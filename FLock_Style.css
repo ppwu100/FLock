@@ -1,0 +1,1107 @@
+/*====================全局初始設定====================*/
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/*====================通用浮起效果風格====================*/
+/* 通用浮起效果 - 可應用到任何需要懸停浮起效果的元素 */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-lift:hover {
+    transform: translateY(-10px) scale(1.02);
+    /* 向上浮起並稍微放大 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+    /* 陰影效果 */
+}
+
+/*H2標題設定*/
+h2 {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: 60px;
+    text-align: center;
+    margin: 50px;
+}
+
+/*H3標題設定*/
+h3 {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin: 20px;
+}
+
+/*普通文本設定*/
+p {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+/*====================介面深色設定====================*/
+body {
+    background-color: #121212;
+    /* 深色背景 */
+    color: white;
+    /* 文字顏色設為白色 */
+}
+
+/*====================最上方導航列====================*/
+/* 讓 header 內的元素水平排列 */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Logo 在左，導覽在右 */
+    gap: 20px;
+
+    /*上方導航列區塊*/
+    background-color: #00000055;
+    backdrop-filter: blur(12px) saturate(180%);
+    /* 毛玻璃 + 飽和度 */
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    padding: 10px 30px;
+    margin: 0px;
+
+    /*位置*/
+    position: fixed;
+    /* 固定在畫面上 */
+    top: 0;
+    /* 貼齊上方 */
+    left: 0;
+    width: 100%;
+    /* 讓 header 寬度填滿 */
+    z-index: 9999;
+    /* 永遠在最上層 */
+    box-sizing: border-box;
+}
+
+/* Logo 和標題容器 */
+.HeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*LOGO標題*/
+h1.Header {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/*LOGO圖片*/
+img.Header {
+    width: 40px;
+}
+
+/* 導覽按鈕容器 */
+.HeaderNav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 導覽按鈕樣式 */
+.NavButton {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.NavButton:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.NavButton::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: rgba(0, 120, 255, 1);
+    transition: width 0.3s ease;
+}
+
+.NavButton:hover::after {
+    width: 80%;
+}
+
+/* 手機版選單按鈕 (預設隱藏) */
+.MenuToggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    /* 確保在最上層 */
+    padding: 0;
+}
+
+.MenuToggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* 漢堡選單動畫效果 */
+.MenuToggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.MenuToggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.MenuToggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/*====================回到頂部按鈕====================*/
+.ScrollToTopButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 120, 255, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 120, 255, 0.4);
+}
+
+.ScrollToTopButton:hover {
+    background-color: rgba(0, 120, 255, 1);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 120, 255, 0.6);
+}
+
+.ScrollToTopButton.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ScrollToTopButton svg {
+    width: 24px;
+    height: 24px;
+}
+
+/*====================上方封面圖案及文字====================*/
+/* 封面外層：填滿視窗 */
+.FrontCoverWrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* 填滿視窗高度 */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*圖片 - 預設（橫向螢幕）*/
+img.FrontCover {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    /* 裁切填滿容器 */
+    object-position: center;
+    /* 置中裁切 */
+}
+
+/* 直式螢幕（縱向）：左右裁切 */
+@media (orientation: portrait) {
+    img.FrontCover {
+        width: auto;
+        /* 寬度自動 */
+        height: 100%;
+        /* 高度填滿 */
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* 橫向螢幕：上下裁切（預設已設定）*/
+@media (orientation: landscape) {
+    img.FrontCover {
+        width: 100%;
+        /* 寬度填滿 */
+        height: 100%;
+        /* 高度填滿 */
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* 半透明遮罩 */
+.FrontCoverOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    /* 透明度可調整 */
+    pointer-events: none;
+    /* 讓點擊事件穿透 */
+}
+
+/* 封面內容容器 */
+.FrontCoverContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* 置中顯示的標題文字 */
+.FrontCoverTitle {
+    color: white;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* 置中顯示的說明文字 */
+.FrontCoverText {
+    color: white;
+    font-size: clamp(1rem, 3vw, 2rem);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 3rem;
+}
+
+/* 按鈕容器 */
+.FrontCoverButtons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* 按鈕1樣式 */
+.FrontCoverButton1 {
+    padding: 12px 50px;
+    font-size: 1.1rem;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 按鈕2樣式 */
+.FrontCoverButton2 {
+    padding: 12px 50px;
+    font-size: 1.1rem;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: black;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 按鈕3樣式 */
+.FrontCoverButton3 {
+    padding: 12px 50px;
+    font-size: 1.1rem;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 按鈕1懸停效果 */
+.FrontCoverButton1:hover {
+    background-color: rgba(0, 120, 255, 1);
+    transform: scale(1.05);
+}
+
+/* 按鈕2懸停效果 */
+.FrontCoverButton2:hover {
+    background-color: rgb(90, 210, 255);
+    transform: scale(1.05);
+}
+
+/* 按鈕3懸停效果 */
+.FrontCoverButton3:hover {
+    background-color: rgba(0, 120, 255, 1);
+    transform: scale(1.05);
+}
+
+/*====================門禁使用場景====================*/
+/* 圖片容器：水平置中、圖片間距、自動換行 */
+.WhereSetFLock_items {
+    display: flex;
+    justify-content: center;
+    /* 水平置中整排 */
+    gap: 30px;
+    /* 圖片間距 */
+    flex-wrap: wrap;
+    /*  RWD：小螢幕自動換行 */
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+/* 物件方塊內設定 */
+.WhereSetFLock_item {
+    width: 400px;
+    /* 固定寬度或用百分比 */
+    max-width: 100%;
+    /* 響應式：小螢幕可填滿 */
+    min-width: 280px;
+    /* 最小寬度確保可讀性 */
+    border-radius: 8px;
+    /* 圓角 */
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 通用浮起效果 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.WhereSetFLock_item:hover {
+    transform: translateY(-10px) scale(1.02);
+    /* 向上浮起並稍微放大 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+    /* 陰影效果 */
+    background-color: rgba(255, 255, 255, 0.08);
+    /* 背景稍微變亮 */
+}
+
+/* 圖片樣式：響應式拉伸、圓角 */
+.WhereSetFLock_item img {
+    width: 100%;
+    /* 響應式寬度，填滿容器 */
+    height: auto;
+    /* 高度自動，保持比例 */
+    min-height: 250px;
+    /* 最小高度確保顯示 */
+    max-height: 400px;
+    /* 最大高度限制 */
+    object-fit: cover;
+    /* 保持比例填滿容器 */
+    border-radius: 8px;
+    /* 圓角 */
+    margin-bottom: 20px;
+}
+
+/*====================問題引導區塊====================*/
+.QuestionSection {
+    min-height: 100vh;
+    /* 填滿整個視窗高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, rgba(0, 120, 255, 0.1), rgba(0, 149, 255, 0.15));
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.QuestionSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 120, 255, 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+.QuestionContent {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.QuestionTitle {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 40px;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 重點標示：又貴又難用 */
+.QuestionTitle .HighlightText {
+    display: inline-block;
+    color: #ff6b6b;
+    /* 紅色突出顯示 */
+    font-weight: 900;
+    font-size: 2em;
+    /* 與標題一樣大小，讓寬度一致 */
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #ff6b6b, #ff8787);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 脈衝動畫效果 */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/*====================解決方案區塊====================*/
+.SolutionSection {
+    min-height: 100vh;
+    /* 填滿整個視窗高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.3), rgba(0, 100, 0, 0.4));
+    /* 綠色暗色漸層 */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.SolutionSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(34, 139, 34, 0.2), transparent 70%);
+    pointer-events: none;
+}
+
+.SolutionContent {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.SolutionText {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    /* 調整最小字體，讓小螢幕時不會太小 */
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 解決方案開頭文字 */
+.SolutionText .SolutionIntro {
+    display: inline-block;
+    font-size: 1.4em;
+    /* 比基礎文字大 40% */
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* 解決方案重點文字 */
+.SolutionText .SolutionHighlight {
+    display: inline-block;
+    font-size: 2.5em;
+    /* 比基礎文字大 30% */
+    font-weight: 600;
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+/*====================為何需要門禁系統====================*/
+.WhyNeedSection {
+    padding: 80px 20px;
+}
+
+.WhyNeedItems {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.WhyNeedItem {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.WhyNeedItem:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* 圖片容器 - 1:1 比例 */
+.WhyNeedItemImage {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.WhyNeedItemImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* 文字內容容器 */
+.WhyNeedItemContent {
+    flex: 1;
+    text-align: left;
+    /* 預設左對齊（橫向排列時） */
+}
+
+.WhyNeedItemContent h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: left;
+    /* 預設左對齊（橫向排列時） */
+}
+
+/* 確保橫向排列時，內部所有元素也左對齊 */
+.WhyNeedItemContent h3,
+.WhyNeedItemContent p {
+    text-align: left;
+}
+
+.WhyNeedItemContent p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* 當項目垂直排列時（圖片在上，文字在下），文字置中 */
+.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent,
+.WhyNeedItem.flex-column .WhyNeedItemContent {
+    text-align: center;
+}
+
+.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent h3,
+.WhyNeedItem.flex-column .WhyNeedItemContent h3 {
+    text-align: center;
+}
+
+.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent p,
+.WhyNeedItem.flex-column .WhyNeedItemContent p {
+    text-align: center;
+}
+
+/* 橫向螢幕（Landscape）響應式設計 - 當圖片橫向排列時放大標題 */
+@media (orientation: landscape) {
+
+    /* 只有當項目是橫向排列時才放大標題 */
+    .WhyNeedItem:not([style*="flex-direction: column"]):not(.flex-column) .WhyNeedItemContent h3 {
+        font-size: 2.2rem;
+        /* 放大標題 */
+    }
+}
+
+/* 直向螢幕（Portrait）響應式設計 */
+@media (orientation: portrait) {
+    .WhyNeedItemImage {
+        width: min(60vw, 300px);
+        /* 根據螢幕寬度調整，最大300px */
+        height: min(60vw, 300px);
+        /* 保持1:1比例 */
+    }
+}
+
+/*====================產品核心特色====================*/
+.FeaturesSection {
+    padding: 80px 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.FeaturesItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.FeatureItem {
+    padding: 30px 25px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.FeatureItem h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.FeatureItem p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/*====================技術優勢====================*/
+.TechAdvantageSection {
+    padding: 80px 20px;
+}
+
+.TechAdvantageItems {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.TechAdvantageItem {
+    flex: 1;
+    min-width: 250px;
+    max-width: 280px;
+    padding: 25px 20px;
+    background: linear-gradient(135deg, rgba(0, 120, 255, 0.1), rgba(0, 149, 255, 0.1));
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(0, 120, 255, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.TechAdvantageItem:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 120, 255, 0.6);
+}
+
+.TechAdvantageItem h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.TechAdvantageItem p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/*====================頁尾====================*/
+.FooterSection {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 60px 20px 40px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.FooterContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.FooterLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.FooterLogo img {
+    width: 50px;
+    height: auto;
+}
+
+.FooterLogo h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffffff;
+}
+
+.FooterInfo p,
+.FooterContact p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.FooterContact p:first-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+        margin: 30px 20px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .WhereSetFLock_item {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        /* 小螢幕時完全填滿 */
+    }
+
+    .WhereSetFLock_item img {
+        width: 100%;
+        /* 完全填滿容器寬度 */
+        max-width: 100%;
+        /* 移除最大寬度限制 */
+        min-height: 200px;
+        /* 調整最小高度 */
+        max-height: none;
+        /* 移除最大高度限制，讓圖片自然拉伸 */
+    }
+
+    .FrontCoverWrapper {
+        height: 100vh;
+        /* 小螢幕時仍然填滿視窗 */
+    }
+
+    img.FrontCover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* 調整封面內容位置，讓文字往下移 */
+    .FrontCoverContent {
+        top: 55%;
+        /* 從 50% 調整為 55%，讓內容往下移 */
+    }
+
+    /* 調整封面標題和文字間距 */
+    .FrontCoverTitle {
+        margin-bottom: 0.5rem;
+        /* 減少標題下方間距 */
+    }
+
+    .FrontCoverText {
+        margin-bottom: 1.5rem;
+        /* 減少文字下方間距 */
+    }
+
+    .FrontCoverButtons {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+        /* 減少按鈕上方間距 */
+        gap: 12px;
+        /* 減少按鈕間距 */
+    }
+
+    .FrontCoverButton1,
+    .FrontCoverButton2,
+    .FrontCoverButton3 {
+        width: 70%;
+        /* 從 80% 減少到 70% */
+        max-width: 250px;
+        /* 從 300px 減少到 250px */
+        padding: 10px 30px;
+        /* 從 12px 50px 減少到 10px 30px */
+        font-size: 0.95rem;
+        /* 從 1.1rem 減少到 0.95rem */
+    }
+
+    /* 響應式：問題引導區塊 */
+    .QuestionSection {
+        min-height: 80vh;
+        /* 小螢幕時至少填滿 80% 視窗 */
+        padding: 60px 20px;
+    }
+
+    .QuestionTitle {
+        font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+        /* 調整最小字體，讓小螢幕時不會太小 */
+        margin-bottom: 30px;
+    }
+
+    .QuestionTitle .HighlightText {
+        font-size: 2em;
+        /* 保持相對大小 */
+    }
+
+    /* 響應式：解決方案區塊 */
+    .SolutionSection {
+        min-height: 80vh;
+        /* 小螢幕時至少填滿 80% 視窗 */
+        padding: 60px 20px;
+    }
+
+    .SolutionText {
+        font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+        /* 調整最小字體，讓小螢幕時不會太小 */
+    }
+
+    /* 響應式：為何需要門禁系統 */
+    .WhyNeedSection {
+        padding: 40px 20px;
+    }
+
+    .WhyNeedItems {
+        padding: 20px 10px;
+    }
+
+    .WhyNeedItem {
+        flex-direction: column;
+        /* 小螢幕時垂直排列 */
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* 小螢幕時垂直排列，文字置中 */
+    .WhyNeedItemContent {
+        text-align: left;
+        /* 垂直排列時文字置中 */
+    }
+
+    .WhyNeedItemContent h3 {
+        font-size: 1.5rem;
+        text-align: center;
+        /* 垂直排列時標題置中 */
+    }
+
+    .WhyNeedItemContent p {
+        font-size: 1rem;
+        text-align: left;
+        /* 垂直排列時段落文字置中 */
+    }
+
+    /* 小螢幕直向時：圖片框根據螢幕寬度調整 */
+    @media (orientation: portrait) {
+        .WhyNeedItemImage {
+            width: min(50vw, 200px);
+            /* 根據螢幕寬度調整，最大200px */
+            height: min(50vw, 200px);
+            /* 保持1:1比例 */
+        }
+    }
+
+    /* 小螢幕橫向時：如果項目是橫向排列，則放大標題並左對齊 */
+    @media (orientation: landscape) {
+
+        /* 如果項目改回橫向排列，則左對齊並放大標題 */
+        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent h3,
+        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent h3 {
+            font-size: 1.8rem;
+            /* 放大標題 */
+            text-align: left;
+            /* 標題左對齊 */
+        }
+
+        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent,
+        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent {
+            text-align: left;
+            /* 文字左對齊 */
+        }
+
+        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent p,
+        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent p {
+            text-align: left;
+            /* 段落文字左對齊 */
+        }
+    }
+
+    /* 響應式：產品核心特色 */
+    .FeaturesSection {
+        padding: 40px 20px;
+    }
+
+    .FeaturesItems {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* 響應式：技術優勢 */
+    .TechAdvantageSection {
+        padding: 40px 20px;
+    }
+
+    .TechAdvantageItems {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .TechAdvantageItem {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 響應式：頁尾 */
+    .FooterSection {
+        padding: 40px 20px;
+    }
+
+    .FooterContent {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* 響應式：導覽列 */
+    header {
+        padding: 10px 20px;
+        justify-content: space-between;
+    }
+
+    /* 顯示漢堡選單按鈕 */
+    .MenuToggle {
+        display: flex;
+    }
+
+    /* 手機版導覽選單 */
+    .HeaderNav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* 預設隱藏在右側 */
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 60px;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .HeaderNav.active {
+        right: 0;
+        /* 滑入顯示 */
+    }
+
+    .NavButton {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+        box-sizing: border-box;
+        /* 防止 padding 導致超出寬度 */
+    }
+
+    .NavButton:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: none;
+    }
+
+    /* 響應式：回到頂部按鈕 */
+    .ScrollToTopButton {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .ScrollToTopButton svg {
+        width: 20px;
+        height: 20px;
+    }
+}

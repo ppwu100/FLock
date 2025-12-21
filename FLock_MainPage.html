@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FNet FLock專業智慧的門禁系統</title> <!--網站名稱-->
+    <link rel="stylesheet" href="FLock_Style.css">
+</head>
+
+<body>
+    <!--頂部標題導航列-->
+    <header>
+        <div class="HeaderLeft">
+            <img class="Header" src="images/LockServer_Icon.png" alt="FLock Logo">
+            <h1 class="Header">FLock</h1>
+        </div>
+        <button class="MenuToggle" aria-label="開啟選單">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="HeaderNav">
+            <a href="#story" class="NavButton">產品故事</a>
+            <a href="#device" class="NavButton">門禁機台</a>
+            <a href="#download" class="NavButton">下載中心</a>
+        </nav>
+    </header>
+    <!--回到頂部按鈕-->
+    <button id="scrollToTop" class="ScrollToTopButton" aria-label="回到頂部">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+    <!--封面圖片-->
+    <section>
+        <div class="FrontCoverWrapper">
+            <img class="FrontCover" src="images/FrontCover.png" alt="FLock 封面圖">
+            <div class="FrontCoverOverlay"></div>
+            <div class="FrontCoverContent">
+                <div class="FrontCoverTitle">FNet FLock</div>
+                <div class="FrontCoverText">重新定義智慧、安全的新世代門禁系統</div>
+
+                <!--封面標題-->
+                <div class="FrontCoverButtons">
+                    <button class="FrontCoverButton1">觀看影片</button>
+                    <button class="FrontCoverButton2">立即購買</button>
+                    <button class="FrontCoverButton3">下載中心</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--問題引導區塊-->
+    <section class="QuestionSection">
+        <div class="QuestionContent">
+            <h2 class="QuestionTitle">你是否覺得市面上的門禁<br><span class="HighlightText">又貴又難用?</span></h2>
+        </div>
+    </section>
+    <!--解決方案區塊-->
+    <section class="SolutionSection">
+        <div class="SolutionContent">
+            <p class="SolutionText"><span class="SolutionIntro">使用 FNet FLock 門禁，享受</span><br><span
+                    class="SolutionHighlight">更便捷的進出體驗</span><br><span class="SolutionHighlight">更智慧的系統管理</span></p>
+        </div>
+    </section>
+    <!--為何需要門禁系統-->
+    <section class="WhyNeedSection">
+        <h2 class="InPage">為何需要門禁系統?</h2>
+        <div class="WhyNeedItems">
+            <div class="WhyNeedItem">
+                <div class="WhyNeedItemImage">
+                    <img src="images/LockServer_Icon.png" alt="方便快速">
+                </div>
+                <div class="WhyNeedItemContent">
+                    <h3>方便快速</h3>
+                    <p>快速進出，無需等待，提升使用體驗與效率。</p>
+                </div>
+            </div>
+            <div class="WhyNeedItem">
+                <div class="WhyNeedItemImage">
+                    <img src="images/LockServer_Icon.png" alt="高效管理">
+                </div>
+                <div class="WhyNeedItemContent">
+                    <h3>高效管理</h3>
+                    <p>即時記錄進出人員資訊，方便管理員追蹤與管理，建立完整的進出紀錄。</p>
+                </div>
+            </div>
+            <div class="WhyNeedItem">
+                <div class="WhyNeedItemImage">
+                    <img src="images/LockServer_Icon.png" alt="更加安全">
+                </div>
+                <div class="WhyNeedItemContent">
+                    <h3>更加安全</h3>
+                    <p>有效防止未授權人員進入，保護人員與財產安全，降低安全風險。</p>
+                </div>
+            </div>
+            <div class="WhyNeedItem">
+                <div class="WhyNeedItemImage">
+                    <img src="images/LockServer_Icon.png" alt="節省成本">
+                </div>
+                <div class="WhyNeedItemContent">
+                    <h3>節省成本</h3>
+                    <p>自動化進出管理，減少人力成本，提升整體效益。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--產品核心特色
+    <section class="FeaturesSection">
+        <h2 class="InPage">產品核心特色</h2>
+        <div class="FeaturesItems">
+            <div class="FeatureItem hover-lift">
+                <h3>🤖 AI 智慧辨識</h3>
+                <p>採用先進的人工智慧技術，支援人臉辨識、指紋識別等多種辨識方式，準確率高達 99.9%。</p>
+            </div>
+            <div class="FeatureItem hover-lift">
+                <h3>☁️ 雲端管理</h3>
+                <p>透過雲端平台隨時隨地管理門禁系統，遠端控制、即時監控，管理更便捷。</p>
+            </div>
+            <div class="FeatureItem hover-lift">
+                <h3>📱 行動應用</h3>
+                <p>支援手機 App 操作，開鎖、查看紀錄、接收通知，一切盡在掌握。</p>
+            </div>
+            <div class="FeatureItem hover-lift">
+                <h3>🔐 安全加密</h3>
+                <p>採用軍用級加密技術，保護資料安全，防止未授權存取與資料外洩。</p>
+            </div>
+            <div class="FeatureItem hover-lift">
+                <h3>⚙️ 彈性設定</h3>
+                <p>可自訂權限等級、時間限制、區域管制，滿足各種管理需求。</p>
+            </div>
+            <div class="FeatureItem hover-lift">
+                <h3>📈 數據分析</h3>
+                <p>提供詳細的進出數據分析報表，協助優化管理策略與決策。</p>
+            </div>
+        </div>
+    </section>-->
+
+    <!--門禁使用場景-->
+    <section class="WhereSetSection">
+        <h2 class="InPage">哪裡適合門禁系統?</h2>
+        <div class="WhereSetFLock_items">
+            <div class="WhereSetFLock_item">
+                <img src="images/Copilot_20251207_170144.png" alt="公寓">
+                <h3>公寓</h3>
+                <p>對於普通公寓的進出管理，防止不明人士擅自進入，管理員也可以調查進出大樓狀況。</p>
+            </div>
+            <div class="WhereSetFLock_item">
+                <img src="images/Copilot_20251207_171746.png" alt="公司">
+                <h3>公司</h3>
+                <p>適合公司進出門禁系統，可設定考勤功能，隨時掌握員工上下班時間及公司內部位置。</p>
+            </div>
+            <div class="WhereSetFLock_item">
+                <img src="images/Copilot_20251207_174140.png" alt="學校">
+                <h3>學校</h3>
+                <p>校園出入控管更安全，可以管理哪些地方學生不可擅自進入，如電梯不可讓學生搭乘。</p>
+            </div>
+        </div>
+    </section>
+
+    <!--技術優勢
+    <section class="TechAdvantageSection">
+        <h2 class="InPage">技術優勢</h2>
+        <div class="TechAdvantageItems">
+            <div class="TechAdvantageItem">
+                <h3>⚡ 快速響應</h3>
+                <p>辨識速度 < 0.5 秒，進出流暢不卡頓</p>
+            </div>
+            <div class="TechAdvantageItem">
+                <h3>🌐 穩定連線</h3>
+                <p>支援多種網路環境，離線也能正常運作</p>
+            </div>
+            <div class="TechAdvantageItem">
+                <h3>🔋 長效續航</h3>
+                <p>低功耗設計，電池續航可達數月</p>
+            </div>
+            <div class="TechAdvantageItem">
+                <h3>🛡️ 防護等級</h3>
+                <p>IP65 防水防塵，適應各種環境</p>
+            </div>
+        </div>
+    </section>-->
+
+    <!--頁尾-->
+    <footer class="FooterSection">
+        <div class="FooterContent">
+            <div class="FooterLogo">
+                <img src="images/LockServer_Icon.png" alt="FLock Logo" width="40">
+                <h3>FNet FLock</h3>
+            </div>
+            <div class="FooterInfo">
+                <p>專業智慧的門禁系統解決方案</p>
+                <p>© 2024 FNet FLock. All rights reserved.</p>
+            </div>
+            <div class="FooterContact">
+                <p>聯絡我們</p>
+                <p>Email: contact@fnetlock.com</p>
+                <p>電話: 0800-XXX-XXX</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 回到頂部按鈕功能
+        const scrollToTopButton = document.getElementById('scrollToTop');
+
+        // 偵測捲動位置
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
+
+        // 點擊回到頂部
+        scrollToTopButton.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+        // 手機版選單切換
+        const menuToggle = document.querySelector('.MenuToggle');
+        const headerNav = document.querySelector('.HeaderNav');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                headerNav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        }
+
+        // 點擊連結後自動關閉選單
+        document.querySelectorAll('.NavButton').forEach(button => {
+            button.addEventListener('click', () => {
+                headerNav.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
