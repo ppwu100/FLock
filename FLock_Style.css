@@ -18,6 +18,21 @@
     /* 陰影效果 */
 }
 
+/* 動態背景動畫關鍵影格 */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /*H2標題設定*/
 h2 {
     font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
@@ -446,8 +461,23 @@ img.FrontCover {
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: center;
     padding: 100px 20px;
-    background: linear-gradient(135deg, rgba(0, 120, 255, 0.1), rgba(0, 149, 255, 0.15));
+    padding: 100px 20px;
+    /* 藍色漸層：更沉穩、深邃的色調，平滑過渡 */
+    background: linear-gradient(-45deg,
+            rgba(2, 28, 60, 0.4),
+            /* 深海軍藍 */
+            rgba(10, 40, 90, 0.5),
+            /* 略亮的深藍 */
+            rgba(5, 30, 70, 0.45),
+            /* 過渡深藍 */
+            rgba(2, 20, 50, 0.5)
+            /* 極深藍 */
+        );
+    background-size: 400% 400%;
+    animation: gradientBG 4s ease infinite;
+    /* 速度加快到 4s */
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -520,9 +550,26 @@ img.FrontCover {
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: center;
+    justify-content: center;
     padding: 100px 20px;
-    background: linear-gradient(135deg, rgba(34, 139, 34, 0.3), rgba(0, 100, 0, 0.4));
-    /* 綠色暗色漸層 */
+    /* 增強綠色漸層對比度與亮暗變化 */
+    padding: 100px 20px;
+    /* 綠色漸層：更可靠、穩重的森林綠色調，平滑過渡 */
+    background: linear-gradient(-45deg,
+            rgba(15, 60, 30, 0.4),
+            /* 深森林綠 */
+            rgba(25, 80, 45, 0.45),
+            /* 略亮的穩重綠 */
+            rgba(20, 70, 40, 0.4),
+            /* 過渡綠 */
+            rgba(10, 50, 25, 0.5)
+            /* 極深綠 */
+        );
+    background-size: 400% 400%;
+    animation: gradientBG 4s ease infinite;
+    /* 速度加快到 4s */
+    /* 綠色暗色動態漸層 */
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -597,7 +644,10 @@ img.FrontCover {
 
 .WhyNeedItem {
     display: flex;
+    flex-direction: row;
+    /* 預設寬螢幕：橫向排列 */
     align-items: center;
+    justify-content: center;
     gap: 30px;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.05);
@@ -619,7 +669,7 @@ img.FrontCover {
     height: 200px;
     border-radius: 12px;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.05);
+    /* background-color: rgba(255, 255, 255, 0.05); 移除背景色以與父層一致 */
 }
 
 .WhyNeedItemImage img {
@@ -634,64 +684,71 @@ img.FrontCover {
 .WhyNeedItemContent {
     flex: 1;
     text-align: left;
-    /* 預設左對齊（橫向排列時） */
+    /* 改回左對齊，消除奇怪的對齊 */
 }
 
 .WhyNeedItemContent h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 2.8rem;
+    margin: 0 0 15px 0;
+    /* 移除左右 margin 避免對齊問題 */
     color: #ffffff;
     font-weight: 700;
     text-align: left;
-    /* 預設左對齊（橫向排列時） */
 }
 
-/* 確保橫向排列時，內部所有元素也左對齊 */
+/* 確保內容元素左對齊 */
 .WhyNeedItemContent h3,
 .WhyNeedItemContent p {
     text-align: left;
 }
 
 .WhyNeedItemContent p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+    /* Margin 已歸零，確保左對齊正確 */
 }
 
-/* 當項目垂直排列時（圖片在上，文字在下），文字置中 */
-.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent,
-.WhyNeedItem.flex-column .WhyNeedItemContent {
-    text-align: center;
-}
+/* 窄螢幕（Narrow Screen）響應式設計 - 手機與平板直向 */
+@media (max-width: 700px) {
 
-.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent h3,
-.WhyNeedItem.flex-column .WhyNeedItemContent h3 {
-    text-align: center;
-}
-
-.WhyNeedItem[style*="flex-direction: column"] .WhyNeedItemContent p,
-.WhyNeedItem.flex-column .WhyNeedItemContent p {
-    text-align: center;
-}
-
-/* 橫向螢幕（Landscape）響應式設計 - 當圖片橫向排列時放大標題 */
-@media (orientation: landscape) {
-
-    /* 只有當項目是橫向排列時才放大標題 */
-    .WhyNeedItem:not([style*="flex-direction: column"]):not(.flex-column) .WhyNeedItemContent h3 {
-        font-size: 2.2rem;
-        /* 放大標題 */
+    /* 調整區塊內距 */
+    .WhyNeedSection {
+        padding: 40px 20px;
     }
-}
 
-/* 直向螢幕（Portrait）響應式設計 */
-@media (orientation: portrait) {
+    .WhyNeedItems {
+        padding: 20px 10px;
+    }
+
+    .WhyNeedItem {
+        flex-direction: column;
+        /* 改回圖片在上、文字在下的直向排列 */
+        align-items: center;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
     .WhyNeedItemImage {
-        width: min(60vw, 300px);
-        /* 根據螢幕寬度調整，最大300px */
-        height: min(60vw, 300px);
-        /* 保持1:1比例 */
+        /* 在直向排列時放大圖片，並填滿容器(內縮由padding控制) */
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        margin-bottom: 20px;
+        flex-shrink: 0;
+    }
+
+    .WhyNeedItemContent h3 {
+        font-size: 2rem;
+        /* 稍微縮小標題字體 */
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .WhyNeedItemContent p {
+        font-size: 1.2rem;
+        text-align: center;
     }
 }
 
@@ -824,11 +881,13 @@ img.FrontCover {
 }
 
 /* 響應式設計 */
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     h2 {
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 8vw, 3.5rem);
         margin: 30px 20px;
         text-align: center;
+        white-space: nowrap;
+        /* 強制不換行 */
     }
 
     h3 {
@@ -910,13 +969,16 @@ img.FrontCover {
 
     /* 響應式：問題引導區塊 */
     .QuestionSection {
-        min-height: 80vh;
-        /* 小螢幕時至少填滿 80% 視窗 */
+        min-height: 100vh;
+        /* 小螢幕時填滿視窗 */
         padding: 60px 20px;
     }
 
     .QuestionTitle {
-        font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+        font-size: clamp(1rem, 6vw, 3.5rem);
+        /* 縮小最小值以適應不換行 */
+        white-space: nowrap;
+        /* 手機上不換行 */
         /* 調整最小字體，讓小螢幕時不會太小 */
         margin-bottom: 30px;
     }
@@ -928,84 +990,20 @@ img.FrontCover {
 
     /* 響應式：解決方案區塊 */
     .SolutionSection {
-        min-height: 80vh;
-        /* 小螢幕時至少填滿 80% 視窗 */
+        min-height: 100vh;
+        /* 小螢幕時填滿視窗 */
         padding: 60px 20px;
     }
 
     .SolutionText {
-        font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+        font-size: clamp(0.9rem, 4vw, 2.2rem);
+        /* 縮小最小值以適應不換行 */
+        white-space: nowrap;
+        /* 手機上不換行 */
         /* 調整最小字體，讓小螢幕時不會太小 */
     }
 
-    /* 響應式：為何需要門禁系統 */
-    .WhyNeedSection {
-        padding: 40px 20px;
-    }
 
-    .WhyNeedItems {
-        padding: 20px 10px;
-    }
-
-    .WhyNeedItem {
-        flex-direction: column;
-        /* 小螢幕時垂直排列 */
-        gap: 20px;
-        padding: 20px;
-    }
-
-    /* 小螢幕時垂直排列，文字置中 */
-    .WhyNeedItemContent {
-        text-align: left;
-        /* 垂直排列時文字置中 */
-    }
-
-    .WhyNeedItemContent h3 {
-        font-size: 1.5rem;
-        text-align: center;
-        /* 垂直排列時標題置中 */
-    }
-
-    .WhyNeedItemContent p {
-        font-size: 1rem;
-        text-align: left;
-        /* 垂直排列時段落文字置中 */
-    }
-
-    /* 小螢幕直向時：圖片框根據螢幕寬度調整 */
-    @media (orientation: portrait) {
-        .WhyNeedItemImage {
-            width: min(50vw, 200px);
-            /* 根據螢幕寬度調整，最大200px */
-            height: min(50vw, 200px);
-            /* 保持1:1比例 */
-        }
-    }
-
-    /* 小螢幕橫向時：如果項目是橫向排列，則放大標題並左對齊 */
-    @media (orientation: landscape) {
-
-        /* 如果項目改回橫向排列，則左對齊並放大標題 */
-        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent h3,
-        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent h3 {
-            font-size: 1.8rem;
-            /* 放大標題 */
-            text-align: left;
-            /* 標題左對齊 */
-        }
-
-        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent,
-        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent {
-            text-align: left;
-            /* 文字左對齊 */
-        }
-
-        .WhyNeedItem[style*="flex-direction: row"] .WhyNeedItemContent p,
-        .WhyNeedItem:not([style*="flex-direction: column"]) .WhyNeedItemContent p {
-            text-align: left;
-            /* 段落文字左對齊 */
-        }
-    }
 
     /* 響應式：產品核心特色 */
     .FeaturesSection {
