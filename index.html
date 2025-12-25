@@ -56,6 +56,27 @@
         <div class="QuestionContent">
             <h2 class="QuestionTitle">你是否覺得市面上的門禁<br><span class="HighlightText">又貴又難用?</span></h2>
         </div>
+
+        <!-- 傳統門禁痛點文字牆 -->
+        <div class="PainPointWall">
+            <div class="PainPointItem">傳統佈線複雜</div>
+            <div class="PainPointItem">安裝費用極高</div>
+            <div class="PainPointItem">感應卡秒被複製</div>
+            <div class="PainPointItem">軟體介面像上個世紀</div>
+            <div class="PainPointItem">手機不能開門</div>
+            <div class="PainPointItem">維護成本不透明</div>
+            <div class="PainPointItem">報表導出超麻煩</div>
+            <div class="PainPointItem">售後服務找不到人</div>
+            <div class="PainPointItem">卡片弄丟又要收費</div>
+            <div class="PainPointItem">遠端開門困難重重</div>
+            <div class="PainPointItem">記錄同步永遠慢半拍</div>
+            <div class="PainPointItem">擴充功能還要再拉線</div>
+            <div class="PainPointItem">報修半個月沒人來</div>
+            <div class="PainPointItem">多點管理像地獄</div>
+            <div class="PainPointItem">卡機老舊讀不到卡</div>
+            <div class="PainPointItem">斷電後系統就當機</div>
+            <div class="PainPointItem">系統封閉沒彈性</div>
+        </div>
     </section>
     <!--解決方案區塊-->
     <section class="SolutionSection">
@@ -70,7 +91,7 @@
         <div class="WhyNeedItems">
             <div class="WhyNeedItem">
                 <div class="WhyNeedItemImage">
-                    <img src="images/LockServer_Icon.png" alt="方便快速">
+                    <img src="images/Fast_and_Convenient.png" alt="方便快速">
                 </div>
                 <div class="WhyNeedItemContent">
                     <h3>方便快速</h3>
@@ -91,52 +112,74 @@
                     <img src="images/LockSave.png" alt="更加安全">
                 </div>
                 <div class="WhyNeedItemContent">
-                    <h3>更加安全</h3>
-                    <p>獨家卡號加密技術，有效防止複製卡的流行。</p>
+                    <h3>安全可靠</h3>
+                    <p>使用加密NFC卡，有效防止複製卡的流行，杜絕人為疏忽造成的安全疑慮。</p>
                 </div>
             </div>
             <div class="WhyNeedItem">
                 <div class="WhyNeedItemImage">
-                    <img src="images/LockServer_Icon.png" alt="節省成本">
+                    <img src="images/cheaper.png" alt="節省成本">
                 </div>
                 <div class="WhyNeedItemContent">
                     <h3>節省成本</h3>
-                    <p>讓門禁管理人員進出，減少人力成本。</p>
+                    <p>減少人工管理需求，降低人力成本。以更低價格享受更佳體驗。</p>
                 </div>
             </div>
         </div>
     </section>
+    <!--FLock 系列亮點-->
+    <section class="HighlightsSection">
+        <!-- 星座感隨機飄動背景 (Canvas 動態連線) -->
+        <canvas id="constellationCanvas" class="HighlightsBackground"></canvas>
 
-    <!--產品核心特色
-    <section class="FeaturesSection">
-        <h2 class="InPage">產品核心特色</h2>
-        <div class="FeaturesItems">
-            <div class="FeatureItem hover-lift">
-                <h3>🤖 AI 智慧辨識</h3>
-                <p>採用先進的人工智慧技術，支援人臉辨識、指紋識別等多種辨識方式，準確率高達 99.9%。</p>
+        <h2 class="InPage">FLock 系列亮點</h2>
+        <div class="HighlightsItems">
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/LightBlueLock.png" alt="獨家加密">
+                </div>
+                <h3>獨家加密</h3>
+                <p>自研加解密技術，徹底杜絕市面常見卡片複製行為。</p>
             </div>
-            <div class="FeatureItem hover-lift">
-                <h3>☁️ 雲端管理</h3>
-                <p>透過雲端平台隨時隨地管理門禁系統，遠端控制、即時監控，管理更便捷。</p>
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/WiFi.png" alt="雲端管理">
+                </div>
+                <h3>無線管理</h3>
+                <p>杜絕佈線成本再降低!維護更方便，並且可以統一管理多點門禁。</p>
             </div>
-            <div class="FeatureItem hover-lift">
-                <h3>📱 行動應用</h3>
-                <p>支援手機 App 操作，開鎖、查看紀錄、接收通知，一切盡在掌握。</p>
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/Manage Easier.png" alt="手機開門">
+                </div>
+                <h3>手機開門</h3>
+                <p>支援藍牙協議，手機就是一把鑰匙。</p>
             </div>
-            <div class="FeatureItem hover-lift">
-                <h3>🔐 安全加密</h3>
-                <p>採用軍用級加密技術，保護資料安全，防止未授權存取與資料外洩。</p>
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/Manage Easier.png" alt="預防死機">
+                </div>
+                <h3>預防死機</h3>
+                <p>內建WatchDog功能，當機自動重新啟動恢復。</p>
             </div>
-            <div class="FeatureItem hover-lift">
-                <h3>⚙️ 彈性設定</h3>
-                <p>可自訂權限等級、時間限制、區域管制，滿足各種管理需求。</p>
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/Clock.png" alt="考勤管理">
+                </div>
+                <h3>考勤管理</h3>
+                <p>同時可設定考勤功能，員工進出自動記錄。</p>
             </div>
-            <div class="FeatureItem hover-lift">
-                <h3>📈 數據分析</h3>
-                <p>提供詳細的進出數據分析報表，協助優化管理策略與決策。</p>
+            <div class="HighlightItem hover-lift">
+                <div class="HighlightIcon">
+                    <img src="images/Edit.png" alt="自動紀錄">
+                </div>
+                <h3>自動紀錄</h3>
+                <p>系統自動生成每日進出報表，管理不再繁瑣。</p>
             </div>
         </div>
-    </section>-->
+    </section>
+
+
 
     <!--門禁使用場景-->
     <section class="WhereSetSection">
@@ -234,6 +277,90 @@
                 menuToggle.classList.toggle('active');
             });
         }
+
+        // 星座連線動畫 (Canvas Constellation)
+        const canvas = document.getElementById('constellationCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = 80; // 粒子數量 (增加密度)
+        const connectionDistance = 150; // 連線距離
+
+        function resizeCanvas() {
+            const section = canvas.parentElement;
+            canvas.width = section.offsetWidth;
+            canvas.height = section.offsetHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 120, 255, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawLines();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createParticles();
+        });
+
+        // 初始化
+        resizeCanvas();
+        createParticles();
+        animate();
 
         // 點擊連結後自動關閉選單
         document.querySelectorAll('.NavButton').forEach(button => {
