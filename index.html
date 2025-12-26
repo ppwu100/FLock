@@ -78,106 +78,117 @@
             <div class="PainPointItem">系統封閉沒彈性</div>
         </div>
     </section>
-    <!--解決方案區塊-->
-    <section class="SolutionSection">
-        <div class="SolutionContent">
-            <p class="SolutionText"><span class="SolutionIntro">使用 FNet FLock 門禁，享受</span><br><span
-                    class="SolutionHighlight">更便捷的進出體驗</span><br><span class="SolutionHighlight">更智慧的系統管理</span></p>
-        </div>
-    </section>
-    <!--為何需要門禁系統-->
-    <section class="WhyNeedSection">
-        <h2 class="InPage">為何需要門禁系統?</h2>
-        <div class="WhyNeedItems">
-            <div class="WhyNeedItem">
-                <div class="WhyNeedItemImage">
-                    <img src="images/Fast_and_Convenient.png" alt="方便快速">
-                </div>
-                <div class="WhyNeedItemContent">
-                    <h3>方便快速</h3>
-                    <p>快速進出，感應即開門，提升使用體驗與效率。</p>
-                </div>
-            </div>
-            <div class="WhyNeedItem">
-                <div class="WhyNeedItemImage">
-                    <img src="images/Manage Easier.png" alt="高效管理">
-                </div>
-                <div class="WhyNeedItemContent">
-                    <h3>高效管理</h3>
-                    <p>即時記錄進出人員資訊，方便管理員管理。建立完整的進出紀錄，方便後須調查。</p>
-                </div>
-            </div>
-            <div class="WhyNeedItem">
-                <div class="WhyNeedItemImage">
-                    <img src="images/LockSave.png" alt="更加安全">
-                </div>
-                <div class="WhyNeedItemContent">
-                    <h3>安全可靠</h3>
-                    <p>使用加密NFC卡，有效防止複製卡的流行，杜絕人為疏忽造成的安全疑慮。</p>
-                </div>
-            </div>
-            <div class="WhyNeedItem">
-                <div class="WhyNeedItemImage">
-                    <img src="images/cheaper.png" alt="節省成本">
-                </div>
-                <div class="WhyNeedItemContent">
-                    <h3>節省成本</h3>
-                    <p>減少人工管理需求，降低人力成本。以更低價格享受更佳體驗。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--FLock 系列亮點-->
-    <section class="HighlightsSection">
-        <!-- 星座感隨機飄動背景 (Canvas 動態連線) -->
+    <!-- 整合區塊：從解決方案到亮點的全無縫設計 -->
+    <div class="FeaturesContainer">
+        <!-- 星動隨機飄動背景 (Canvas 動態連線) -->
         <canvas id="constellationCanvas" class="HighlightsBackground"></canvas>
 
-        <h2 class="InPage">FLock 系列亮點</h2>
-        <div class="HighlightsItems">
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/LightBlueLock.png" alt="獨家加密">
-                </div>
-                <h3>獨家加密</h3>
-                <p>自研加解密技術，徹底杜絕市面常見卡片複製行為。</p>
+        <!--解決方案區塊-->
+        <section id="solution" class="SolutionSection">
+            <div class="SolutionContent">
+                <p class="SolutionText">
+                    <span class="SolutionIntro">使用 FNet FLock 門禁，享受</span><br>
+                    <span class="SolutionHighlight">更便捷的進出體驗</span><br>
+                    <span class="SolutionHighlight">更智慧的系統管理</span>
+                </p>
             </div>
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/WiFi.png" alt="雲端管理">
+        </section>
+
+        <!--為何需要門禁系統-->
+        <section id="why-need" class="WhyNeedSection">
+            <h2 class="InPage">為何需要門禁系統?</h2>
+            <div class="WhyNeedItems">
+                <div class="WhyNeedItem glass-card">
+                    <div class="WhyNeedItemImage">
+                        <img src="images/Fast_and_Convenient.png" alt="方便快速" class="img-glow-blue">
+                    </div>
+                    <div class="WhyNeedItemContent">
+                        <h3>方便快速</h3>
+                        <p>快速進出，感應即開門，提升使用體驗與效率。</p>
+                    </div>
                 </div>
-                <h3>無線管理</h3>
-                <p>杜絕佈線成本再降低!維護更方便，並且可以統一管理多點門禁。</p>
-            </div>
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/Manage Easier.png" alt="手機開門">
+                <div class="WhyNeedItem glass-card">
+                    <div class="WhyNeedItemImage">
+                        <img src="images/Manage Easier.png" alt="高效管理" class="img-glow-cyan">
+                    </div>
+                    <div class="WhyNeedItemContent">
+                        <h3>高效管理</h3>
+                        <p>即時記錄進出人員資訊，方便管理員管理。建立完整的進出紀錄，方便後須調查。</p>
+                    </div>
                 </div>
-                <h3>手機開門</h3>
-                <p>支援藍牙協議，手機就是一把鑰匙。</p>
-            </div>
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/Manage Easier.png" alt="預防死機">
+                <div class="WhyNeedItem glass-card">
+                    <div class="WhyNeedItemImage">
+                        <img src="images/LockSave.png" alt="更加安全" class="img-glow-gold">
+                    </div>
+                    <div class="WhyNeedItemContent">
+                        <h3>安全可靠</h3>
+                        <p>使用加密NFC卡，有效防止複製卡的流行，杜絕人為疏忽造成的安全疑慮。</p>
+                    </div>
                 </div>
-                <h3>預防死機</h3>
-                <p>內建WatchDog功能，當機自動重新啟動恢復。</p>
-            </div>
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/Clock.png" alt="考勤管理">
+                <div class="WhyNeedItem glass-card">
+                    <div class="WhyNeedItemImage">
+                        <img src="images/cheaper.png" alt="節省成本" class="img-glow-red">
+                    </div>
+                    <div class="WhyNeedItemContent">
+                        <h3>節省成本</h3>
+                        <p>減少人工管理需求，降低人力成本。以更低價格享受更佳體驗。</p>
+                    </div>
                 </div>
-                <h3>考勤管理</h3>
-                <p>同時可設定考勤功能，員工進出自動記錄。</p>
             </div>
-            <div class="HighlightItem hover-lift">
-                <div class="HighlightIcon">
-                    <img src="images/Edit.png" alt="自動紀錄">
+        </section>
+
+
+        <!--FLock 系列亮點-->
+        <section id="highlights" class="HighlightsSection">
+            <h2 class="InPage">FLock 系列亮點</h2>
+            <div class="HighlightsItems">
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/LightBlueLock.png" alt="獨家加密">
+                    </div>
+                    <h3>獨家加密</h3>
+                    <p>自研加解密技術，徹底杜絕市面常見卡片複製行為。</p>
                 </div>
-                <h3>自動紀錄</h3>
-                <p>系統自動生成每日進出報表，管理不再繁瑣。</p>
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/WiFi.png" alt="雲端管理">
+                    </div>
+                    <h3>無線管理</h3>
+                    <p>杜絕佈線成本再降低!維護更方便，並且可以統一管理多點門禁。</p>
+                </div>
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/Manage Easier.png" alt="手機開門">
+                    </div>
+                    <h3>手機開門</h3>
+                    <p>支援藍牙協議，手機就是一把鑰匙。</p>
+                </div>
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/Manage Easier.png" alt="預防死機">
+                    </div>
+                    <h3>預防死機</h3>
+                    <p>內建WatchDog功能，當機自動重新啟動恢復。</p>
+                </div>
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/Clock.png" alt="考勤管理">
+                    </div>
+                    <h3>考勤管理</h3>
+                    <p>同時可設定考勤功能，員工進出自動記錄。</p>
+                </div>
+                <div class="HighlightItem glass-card hover-lift">
+                    <div class="HighlightIcon">
+                        <img src="images/Edit.png" alt="自動紀錄">
+                    </div>
+                    <h3>自動紀錄</h3>
+                    <p>系統自動生成每日進出報表，管理不再繁瑣。</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+
+
 
 
 

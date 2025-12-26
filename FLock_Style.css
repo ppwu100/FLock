@@ -791,53 +791,36 @@ img.FrontCover {
 }
 
 /*====================解決方案區塊====================*/
+/*==================== 整合特色區塊容器 (全面無縫) ====================*/
+.FeaturesContainer {
+    position: relative;
+    width: 100%;
+    /* 調整漸層佔比：稍微減少綠色占比，讓轉向藍色的過程提早一點點 */
+    background: linear-gradient(to bottom,
+            rgb(10, 50, 25) 0%,
+            /* 起始綠色 */
+            rgb(10, 50, 25) 22%,
+            /* 調整綠色占比 (從 30% 降至 22%) */
+            rgb(7, 34, 18) 40%,
+            /* 中間過渡色提前 */
+            rgb(1, 8, 21) 75%,
+            /* 藍色占比開始提前 */
+            rgb(18, 18, 18) 100%
+            /* 底部轉為黑色 */
+        );
+    overflow: hidden;
+}
+
+/*====================解決方案區塊 (改為透明以顯示容器背景) ====================*/
 .SolutionSection {
     min-height: 100vh;
-    /* 填滿整個視窗高度 */
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-content: center;
-    justify-content: center;
     padding: 100px 20px;
-    /* 增強綠色漸層對比度與亮暗變化 */
-    padding: 100px 20px;
-    /* 綠色漸層：更可靠、穩重的森林綠色調，平滑過渡 */
-    background: linear-gradient(-45deg,
-            rgba(15, 60, 30, 0.4),
-            /* 深森林綠 */
-            rgba(25, 80, 45, 0.45),
-            /* 略亮的穩重綠 */
-            rgba(20, 70, 40, 0.4),
-            /* 過渡綠 */
-            rgba(10, 50, 25, 0.5)
-            /* 極深綠 */
-        );
-    background-size: 400% 400%;
-    animation: gradientBG 4s ease infinite;
-    /* 速度加快到 4s */
-    /* 綠色暗色動態漸層 */
+    background: transparent;
+    /* 設為透明以顯示容器背景 */
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.SolutionSection::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(34, 139, 34, 0.2), transparent 70%);
-    pointer-events: none;
-}
-
-.SolutionContent {
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
     position: relative;
     z-index: 1;
 }
@@ -845,21 +828,20 @@ img.FrontCover {
 .SolutionText {
     font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     font-size: clamp(1.5rem, 4vw, 2.2rem);
-    /* 調整最小字體，讓小螢幕時不會太小 */
     color: rgba(255, 255, 255, 0.95);
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;
     font-weight: 500;
     letter-spacing: 0.8px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* 加回陰影 */
 }
 
 /* 解決方案開頭文字 */
 .SolutionText .SolutionIntro {
     display: inline-block;
     font-size: 1.4em;
-    /* 比基礎文字大 40% */
     font-weight: 600;
     margin-bottom: 10px;
     line-height: 1.6;
@@ -869,15 +851,32 @@ img.FrontCover {
 .SolutionText .SolutionHighlight {
     display: inline-block;
     font-size: 2.5em;
-    /* 比基礎文字大 30% */
-    font-weight: 600;
-    margin: 5px 0;
+    font-weight: 700;
+    margin: 10px 0;
     line-height: 1.6;
+    background: linear-gradient(to bottom, #ffffff, #a5d6a7);
+    /* 加入微綠漸層感 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /*====================為何需要門禁系統====================*/
 .WhyNeedSection {
-    padding: 80px 20px;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    /* 移除背景色，展現容器背景 */
+}
+
+/* Glassmorphism 卡片效果 */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .WhyNeedItems {
@@ -895,36 +894,55 @@ img.FrontCover {
     /* 預設寬螢幕：橫向排列 */
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    gap: 40px;
+    padding: 40px;
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     width: 100%;
     box-sizing: border-box;
 }
 
 .WhyNeedItem:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* 圖片容器 - 1:1 比例 */
 .WhyNeedItemImage {
     flex-shrink: 0;
-    width: 200px;
-    height: 200px;
-    border-radius: 12px;
-    overflow: hidden;
-    /* background-color: rgba(255, 255, 255, 0.05); 移除背景色以與父層一致 */
+    width: 240px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .WhyNeedItemImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+    /* 基礎亮感 */
     display: block;
+    transition: filter 0.3s ease;
+}
+
+/* 根據圖片內容定義特定光暈 */
+.img-glow-blue {
+    filter: drop-shadow(0 0 25px rgba(0, 120, 255, 0.5)) !important;
+}
+
+.img-glow-cyan {
+    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.4)) !important;
+}
+
+.img-glow-gold {
+    filter: drop-shadow(0 0 25px rgba(255, 200, 0, 0.4)) !important;
+}
+
+.img-glow-red {
+    filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.5)) !important;
 }
 
 /* 文字內容容器 */
@@ -1001,11 +1019,10 @@ img.FrontCover {
 
 /*====================FLock 系列亮點====================*/
 .HighlightsSection {
-    padding: 100px 20px;
-    background: #010815;
-    /* 深 Navy 背景 */
+    padding: 120px 20px;
+    background: transparent;
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
 
 /* 星座感背景 (Canvas) */
@@ -1034,14 +1051,10 @@ img.FrontCover {
 }
 
 .HighlightItem {
-    padding: 45px 35px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 20px;
+    padding: 50px 40px;
+    border-radius: 24px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .HighlightIcon {
