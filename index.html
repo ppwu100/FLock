@@ -13,8 +13,10 @@
     <!--頂部標題導航列-->
     <header>
         <div class="HeaderLeft">
-            <img class="Header" src="images/LockServer_Icon.png" alt="FLock Logo">
-            <h1 class="Header">FLock</h1>
+            <a href="index.html">
+                <img class="Header" src="images/LockServer_Icon.png" alt="FLock Logo">
+                <h1 class="Header">FLock</h1>
+            </a>
         </div>
         <button class="MenuToggle" aria-label="開啟選單">
             <span class="bar"></span>
@@ -22,9 +24,24 @@
             <span class="bar"></span>
         </button>
         <nav class="HeaderNav">
-            <a href="#story" class="NavButton">產品故事</a>
-            <a href="#device" class="NavButton">門禁機台</a>
-            <a href="#download" class="NavButton">下載中心</a>
+            <a href="index.html" class="NavButton active">產品故事</a>
+            <div class="NavDropdown">
+                <a href="device.html" class="NavButton HasDropdown">門禁機台 <span class="DropdownTriangle"></span></a>
+                <div class="DropdownContent">
+                    <a href="device.html" class="DropdownItem">所有門禁機台</a>
+                    <div class="DropdownSub">
+                        <a href="javascript:void(0)" class="DropdownItem HasSub">X1 系列 <span
+                                class="SideTriangle"></span></a>
+                        <div class="SubDropdownContent">
+                            <a href="x1-series.html" class="DropdownItem">X1 系列</a>
+                            <a href="x1p.html" class="DropdownItem">X1P</a>
+                            <a href="x1pb.html" class="DropdownItem">X1PB</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="software.html" class="NavButton">管理軟體</a>
+            <a href="download.html" class="NavButton">下載中心</a>
         </nav>
     </header>
     <!--回到頂部按鈕-->
@@ -46,7 +63,8 @@
                 <div class="FrontCoverButtons">
                     <button class="FrontCoverButton1">觀看影片</button>
                     <button class="FrontCoverButton2">立即購買</button>
-                    <button class="FrontCoverButton3">下載中心</button>
+                    <a href="download.html" class="FrontCoverButton3"
+                        style="text-decoration: none; display: inline-block; text-align: center;">下載中心</a>
                 </div>
             </div>
         </div>
@@ -158,17 +176,17 @@
                 </div>
                 <div class="HighlightItem glass-card hover-lift">
                     <div class="HighlightIcon">
-                        <img src="images/Manage Easier.png" alt="手機開門">
+                        <img src="images/Phones.png" alt="手機開門">
                     </div>
                     <h3>手機開門</h3>
-                    <p>支援藍牙協議，手機就是一把鑰匙。</p>
+                    <p>支援藍牙協議，手機就是一把鑰匙。同時支援Apple iOS和Android系統。</p>
                 </div>
                 <div class="HighlightItem glass-card hover-lift">
                     <div class="HighlightIcon">
-                        <img src="images/Manage Easier.png" alt="預防死機">
+                        <img src="images/PreventingCrashes.png" alt="預防死機">
                     </div>
                     <h3>預防死機</h3>
-                    <p>內建WatchDog功能，當機自動重新啟動恢復。</p>
+                    <p>長期測試的穩定系統，內建WatchDog功能，當機自動重新啟動恢復。</p>
                 </div>
                 <div class="HighlightItem glass-card hover-lift">
                     <div class="HighlightIcon">
@@ -283,11 +301,48 @@
         const headerNav = document.querySelector('.HeaderNav');
 
         if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 headerNav.classList.toggle('active');
                 menuToggle.classList.toggle('active');
             });
         }
+
+        // 點擊頁面其他地方關閉選單
+        document.addEventListener('click', () => {
+            headerNav.classList.remove('active');
+            if (menuToggle) menuToggle.classList.remove('active');
+            document.querySelectorAll('.NavDropdown').forEach(d => d.classList.remove('open'));
+            document.querySelectorAll('.DropdownSub').forEach(s => s.classList.remove('open'));
+        });
+
+        // 阻止選單內部點擊冒泡
+        headerNav.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // 手機版下拉選單邏輯
+        const isMobile = () => window.innerWidth <= 700;
+
+        document.querySelectorAll('.NavDropdown > .NavButton').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (isMobile()) {
+                    e.preventDefault(); // 手機版不跳轉，只展開
+                    const parent = btn.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+
+        document.querySelectorAll('.DropdownItem.HasSub').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (isMobile()) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
 
         // 星座連線動畫 (Canvas Constellation)
         const canvas = document.getElementById('constellationCanvas');
@@ -380,6 +435,8 @@
                 if (menuToggle) menuToggle.classList.remove('active');
             });
         });
+
+        // 亮點詳情彈窗邏輯
     </script>
 </body>
 

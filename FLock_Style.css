@@ -79,7 +79,7 @@ header {
     backdrop-filter: blur(12px) saturate(180%);
     /* 毛玻璃 + 飽和度 */
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    padding: 10px 30px;
+    padding: 10px 15px;
     margin: 0px;
 
     /*位置*/
@@ -96,10 +96,13 @@ header {
 }
 
 /* Logo 和標題容器 */
-.HeaderLeft {
+.HeaderLeft a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    /* 設定間距 */
+    text-decoration: none;
+    color: inherit;
 }
 
 /*LOGO標題*/
@@ -135,9 +138,13 @@ img.Header {
     position: relative;
 }
 
-.NavButton:hover {
+.NavButton:hover,
+.NavButton.active {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.NavButton:hover {
     transform: translateY(-2px);
 }
 
@@ -150,11 +157,175 @@ img.Header {
     width: 0;
     height: 2px;
     background-color: rgba(0, 120, 255, 1);
-    transition: width 0.3s ease;
+    /* 預設藍色 */
+    transition: width 0.3s ease, background-color 0.3s ease;
 }
 
+/* 該頁面（活性）時顯示綠色底線 */
+.NavButton.active::after {
+    width: 80%;
+    background-color: rgba(0, 255, 120, 1);
+    /* 綠色 */
+}
+
+/* 滑鼠放上去時變回藍色 */
 .NavButton:hover::after {
     width: 80%;
+    background-color: rgba(0, 120, 255, 1);
+    /* 藍色 */
+}
+
+/*====================導航下拉選單====================*/
+.NavDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.HasDropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 確保內容置中 */
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* 下拉三角形 */
+.DropdownTriangle {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease, border-top-color 0.3s ease;
+    margin-top: 2px;
+}
+
+.NavDropdown:hover>.NavButton .DropdownTriangle,
+.NavDropdown.open>.NavButton .DropdownTriangle {
+    transform: rotate(180deg);
+    border-top-color: #ffffff;
+}
+
+/* 下拉選單內容 */
+.DropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px);
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    min-width: 160px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    padding: 8px;
+    /* 增加內距，讓項目不貼邊 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
+}
+
+/* 電腦版懸停顯示 */
+@media (min-width: 701px) {
+    .NavDropdown:hover>.DropdownContent {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* 手機版點擊顯示 (由 JS 控制) */
+.NavDropdown.open>.DropdownContent {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.DropdownItem {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    font-family: "Noto Sans TC", sans-serif;
+    transition: all 0.2s ease;
+    text-align: center;
+    border-radius: 8px;
+    /* 圓角設定 */
+    margin: 2px 0;
+    /* 項目間的微小間距 */
+}
+
+.DropdownItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: scale(1.02);
+    /* 輕微放大感 */
+}
+
+/* 子選單容器 */
+.DropdownSub {
+    position: relative;
+}
+
+.DropdownItem.HasSub {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+/* 側面小三角形 */
+.SideTriangle {
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.DropdownSub:hover .SideTriangle {
+    transform: translateX(3px);
+    border-left-color: #ffffff;
+}
+
+/* 子選單內容 */
+.SubDropdownContent {
+    position: absolute;
+    display: block;
+    top: -10px;
+    left: 100%;
+    margin-left: 1px;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    min-width: 140px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10001;
+    padding: 8px;
+    /* 增加內距 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-30px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
+}
+
+.DropdownSub:hover>.SubDropdownContent {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 /* 手機版選單按鈕 (預設隱藏) */
@@ -1442,6 +1613,126 @@ img.FrontCover {
         transform: none;
     }
 
+    .NavButton.HasDropdown {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 手機版下拉選單調整 */
+    .NavDropdown {
+        width: 100%;
+    }
+
+    .DropdownTriangle {
+        display: block;
+        position: absolute;
+        right: 30px;
+        /* 固定在右側，不影響文字置中 */
+    }
+
+    .DropdownContent {
+        position: static;
+        transform: none !important;
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        /* 使用 block 但控制高度來達到動畫效果 */
+        max-height: 0;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        width: 100%;
+        pointer-events: auto;
+        /* 確保手機版可以點擊 */
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .NavDropdown.open>.DropdownContent {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        padding: 5px 0;
+    }
+
+    .DropdownItem {
+        font-size: 1.1rem;
+        padding: 15px 30px;
+        color: rgba(255, 255, 255, 0.8);
+        background-color: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        /* 為絕對定位的圖示提供參考 */
+    }
+
+    /* 手機版子選單調整 */
+    .SubDropdownContent {
+        position: static;
+        transform: none !important;
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.2);
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        margin-left: 0;
+        width: 100%;
+        pointer-events: auto;
+        /* 確保手機版可以點擊 */
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .DropdownSub.open>.SubDropdownContent {
+        max-height: 300px;
+        opacity: 1;
+        visibility: visible;
+        padding: 5px 0;
+    }
+
+    .DropdownSub .DropdownItem {
+        padding-left: 30px;
+        padding-right: 30px;
+        /* 移除強制左縮排，改為兩側對稱補白以維持置中感 */
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .SideTriangle {
+        display: block;
+        position: absolute;
+        right: 30px;
+        /* 固定在右側 */
+        transform: rotate(90deg);
+        transition: transform 0.3s ease;
+    }
+
+    .DropdownSub.open .SideTriangle {
+        transform: rotate(270deg);
+        /* 展開時向上 */
+    }
+
+    .DropdownItem.HasSub {
+        background-color: rgba(255, 255, 255, 0.08);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     /* 響應式：回到頂部按鈕 */
     .ScrollToTopButton {
         width: 45px;
@@ -1454,4 +1745,42 @@ img.FrontCover {
         width: 20px;
         height: 20px;
     }
+}
+
+/*====================各頁面占位符樣式====================*/
+.PagePlaceholder {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    /* 避開固定導航列 */
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+}
+
+.PlaceholderContent {
+    text-align: center;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    width: 90%;
+}
+
+.PlaceholderContent h2 {
+    margin-top: 0;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #0078ff, #00ffcc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.PlaceholderContent p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1 系列 - FLock 專業智慧的門禁系統</title>
+    <link rel="icon" href="images/LockServer_Icon.png" type="image/png">
+    <link rel="stylesheet" href="FLock_Style.css">
+</head>
+
+<body>
+    <!--頂部標題導航列-->
+    <header>
+        <div class="HeaderLeft">
+            <a href="index.html">
+                <img class="Header" src="images/LockServer_Icon.png" alt="FLock Logo">
+                <h1 class="Header">FLock</h1>
+            </a>
+        </div>
+        <button class="MenuToggle" aria-label="開啟選單">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="HeaderNav">
+            <a href="index.html" class="NavButton">產品故事</a>
+            <div class="NavDropdown">
+                <a href="device.html" class="NavButton HasDropdown">門禁機台 <span class="DropdownTriangle"></span></a>
+                <div class="DropdownContent">
+                    <a href="device.html" class="DropdownItem">所有門禁機台</a>
+                    <div class="DropdownSub">
+                        <a href="javascript:void(0)" class="DropdownItem HasSub">X1 系列 <span
+                                class="SideTriangle"></span></a>
+                        <div class="SubDropdownContent">
+                            <a href="x1-series.html" class="DropdownItem">X1 系列</a>
+                            <a href="x1p.html" class="DropdownItem">X1P</a>
+                            <a href="x1pb.html" class="DropdownItem">X1PB</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="software.html" class="NavButton">管理軟體</a>
+            <a href="download.html" class="NavButton">下載中心</a>
+        </nav>
+    </header>
+
+    <!--回到頂部按鈕-->
+    <button id="scrollToTop" class="ScrollToTopButton" aria-label="回到頂部">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <!-- 頁面主體 -->
+    <main class="PagePlaceholder">
+        <div class="PlaceholderContent">
+            <h2>X1 系列</h2>
+            <p>內容正在準備中，我們將為您展示 X1 系列門禁機台的強大功能...</p>
+        </div>
+    </main>
+
+    <!--頁尾-->
+    <footer class="FooterSection">
+        <div class="FooterContent">
+            <div class="FooterLogo">
+                <img src="images/LockServer_Icon.png" alt="FLock Logo" width="40">
+                <h3>FNet FLock</h3>
+            </div>
+            <div class="FooterInfo">
+                <p>專業智慧的門禁系統解決方案</p>
+                <p>© 2024 FNet FLock. All rights reserved.</p>
+            </div>
+            <div class="FooterContact">
+                <p>聯絡我們</p>
+                <p>Email: contact@fnetlock.com</p>
+                <p>電話: 0800-XXX-XXX</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 回到頂部按鈕功能
+        const scrollToTopButton = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
+        scrollToTopButton.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 手機版選單邏輯
+        const menuToggle = document.querySelector('.MenuToggle');
+        const headerNav = document.querySelector('.HeaderNav');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                headerNav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        }
+
+        document.addEventListener('click', () => {
+            headerNav.classList.remove('active');
+            if (menuToggle) menuToggle.classList.remove('active');
+            document.querySelectorAll('.NavDropdown').forEach(d => d.classList.remove('open'));
+            document.querySelectorAll('.DropdownSub').forEach(s => s.classList.remove('open'));
+        });
+
+        headerNav.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        const isMobile = () => window.innerWidth <= 700;
+
+        document.querySelectorAll('.NavDropdown > .NavButton').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (isMobile()) {
+                    e.preventDefault();
+                    btn.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
+        document.querySelectorAll('.DropdownItem.HasSub').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (isMobile()) {
+                    e.preventDefault();
+                    item.parentElement.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
