@@ -35,7 +35,7 @@
 
 /*H2標題設定*/
 h2 {
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     font-size: 60px;
     text-align: center;
     margin: 50px;
@@ -43,7 +43,7 @@ h2 {
 
 /*H3標題設定*/
 h3 {
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     font-size: 40px;
     text-align: center;
     margin: 20px;
@@ -51,7 +51,7 @@ h3 {
 
 /*普通文本設定*/
 p {
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     font-size: 20px;
     text-align: center;
     margin: 10px;
@@ -65,6 +65,22 @@ body {
     /* 文字顏色設為白色 */
 }
 
+/* 簡體中文字型對應 */
+html[lang="zh-CN"] body,
+html[lang="zh-CN"] h1,
+html[lang="zh-CN"] h2,
+html[lang="zh-CN"] h3,
+html[lang="zh-CN"] p,
+html[lang="zh-CN"] a,
+html[lang="zh-CN"] button,
+html[lang="zh-CN"] .DropdownItem,
+html[lang="zh-CN"] .Header,
+html[lang="zh-CN"] .FrontCoverButton1,
+html[lang="zh-CN"] .FrontCoverButton2,
+html[lang="zh-CN"] .FrontCoverButton3 {
+    font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif !important;
+}
+
 /*====================最上方導航列====================*/
 /* 讓 header 內的元素水平排列 */
 header {
@@ -75,11 +91,8 @@ header {
     gap: 20px;
 
     /*上方導航列區塊*/
-    background-color: #00000055;
-    backdrop-filter: blur(12px) saturate(180%);
-    /* 毛玻璃 + 飽和度 */
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    padding: 10px 15px;
+    height: 55px; /* 固定高度，以原本電腦版高度為基準確保一致 */
+    padding: 0 20px;
     margin: 0px;
 
     /*位置*/
@@ -95,6 +108,20 @@ header {
     box-sizing: border-box;
 }
 
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000055;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    z-index: -1;
+    pointer-events: none;
+}
+
 /* Logo 和標題容器 */
 .HeaderLeft a {
     display: flex;
@@ -107,7 +134,7 @@ header {
 
 /*LOGO標題*/
 h1.Header {
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     color: white;
     font-size: 1.5rem;
     margin: 0;
@@ -115,27 +142,82 @@ h1.Header {
 
 /*LOGO圖片*/
 img.Header {
-    width: 40px;
+    width: 35px; /* 稍微縮小以適應新佈局 */
+}
+
+/* 語言地球圖示 */
+.GlobeIcon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    vertical-align: middle;
+}
+
+.NavButton.HasDropdown.IconOnly {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NavButton.HasDropdown.IconOnly .DropdownTriangle {
+    display: none; /* 隱藏三角形 */
+    margin-left: 4px;
+    position: static;
 }
 
 /* 導覽按鈕容器 */
 .HeaderNav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 2px; /* 進一步縮小邊距讓按鈕更靠近地球 */
+}
+
+/* 右側控制區 (桌機語言 + 漢堡) */
+.HeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 縮小地球與漢堡選單的間距 */
+    z-index: 10002;
+    margin-left: 0;
+}
+
+/* 顯示控制 */
+.MobileOnly { display: none !important; }
+.DesktopOnly { display: flex !important; }
+
+/* 讓 MobileOnly 在漢堡選單內呈現正確顯示，並確保樣式與其他項目一致 */
+.HeaderNav.active .MobileOnly { display: block !important; }
+.HeaderNav.active .DesktopOnly { display: none !important; }
+
+@media (max-width: 700px) {
+    .HeaderRight .MobileOnly { display: none !important; } /* 避免 HeaderRight 出現多的語言圖示 */
+    .HeaderRight .DesktopOnly { display: none !important; }
+    
+    .HeaderRight {
+        margin-left: auto; /* 手機版將漢堡推向最右側 */
+    }
+}
+
+@media (min-width: 701px) {
+    .HeaderNav { margin-left: auto; } /* 桌機版將導覽與按鈕推到最右側 */
 }
 
 /* 導覽按鈕樣式 */
 .NavButton {
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    padding: 8px 20px;
+    padding: 8px 15px; /* 稍微縮小內距以適應更多空間 */
     border-radius: 6px;
     transition: all 0.3s ease;
     position: relative;
+    white-space: nowrap; /* 防止文字換行 */
 }
 
 .NavButton:hover,
@@ -179,6 +261,234 @@ img.Header {
 .NavDropdown {
     position: relative;
     display: inline-block;
+}
+
+/* 桌機版 Mega Menu (Apple 風格) */
+@media (min-width: 901px) {
+    .HeaderNav .NavDropdown {
+        position: static; /* 讓 DropdownContent 可以相對於整個 header 寬度 */
+    }
+
+    /* 增加橋接區域，避免滑鼠離開選單時因為與內容區的空隙而關閉 */
+    .HeaderNav .NavDropdown > .NavButton::before {
+        content: '';
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        width: 100%;
+        height: 25px;
+        background: transparent;
+    }
+
+    .HeaderNav .NavDropdown > .DropdownContent {
+        position: fixed;
+        top: 55px; /* header 高度 */
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important; /* 不使用 vw 避免捲動條造成寬高破圖 */
+        margin: 0 !important;
+        max-width: none;
+        height: auto;
+        min-height: 200px;
+        background-color: rgba(10, 10, 10, 0.55) !important;
+        backdrop-filter: blur(30px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* 底部邊界 */
+        border-radius: 0 !important; /* 全寬不需圓角 */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-start; /* 靠左對齊 */
+        align-items: flex-start;
+        padding: 50px 60px; /* 左側移更左邊，舒適固定距離 */
+        gap: 80px;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        pointer-events: none;
+        z-index: 9998;
+        box-sizing: border-box;
+        overflow: hidden; /* 當內容超過右側邊界時，隱藏多出來的地方 */
+    }
+
+    .HeaderNav .NavDropdown:hover > .DropdownContent,
+    .HeaderNav .NavDropdown.open > .DropdownContent {
+        transform: none !important; /* 重設任何 transform 位移，避免跑位 */
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Mega Menu 內的內容排列 */
+    .HeaderNav .DropdownContent {
+        display: flex;
+        gap: 50px;
+    }
+
+    /* 左側清單容器 */
+    .HeaderNav .MegaMenuLeft {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        padding-right: 40px; /* 縮小留白距離 */
+        min-width: 140px; /* 左側按鈕寬度更小 */
+    }
+
+    /* 子選單區塊改為直列 */
+    .HeaderNav .DropdownSub {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        position: static; /* 讓絕對定位的子元素能相對於 MegaMenuLeft 排列 */
+    }
+
+    .HeaderNav .DropdownSub > .DropdownItem.HasSub {
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.7);
+        background: none !important;
+        padding: 5px 0;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        border-radius: 0;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: color 0.3s ease;
+    }
+    
+    /* 清除原本針對下拉選單選項全域的底色與位移效果，只單純亮字 */
+    .HeaderNav .DropdownSub > .DropdownItem.HasSub:hover,
+    .HeaderNav .DropdownSub.active > .DropdownItem.HasSub {
+        background: transparent !important;
+        transform: none !important;
+        color: #ffffff;
+    }
+
+    /* 隱藏桌機版 Mega Menu 內的多餘邊界 */
+    .HeaderNav .DropdownTriangle {
+        display: none !important;
+    }
+
+    /* 保留並顯示側面箭頭 */
+    .HeaderNav .SideTriangle {
+        display: inline-block !important;
+        border-left-color: rgba(255, 255, 255, 0.5);
+        transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .HeaderNav .DropdownSub.active .SideTriangle,
+    .HeaderNav .DropdownSub:hover .SideTriangle {
+        border-left-color: #ffffff;
+        transform: translateX(3px);
+    }
+
+    /* 滑鼠放上去時"不要"顯示右側內容，必須強行覆寫全域的 hover，設定只認 .active */
+    .HeaderNav .DropdownSub:not(.active):hover .SubDropdownContent {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translate(-10px, -50%) !important;
+    }
+
+    /* 當滑鼠懸停特定分類時，顯示右邊對應的子清單 (改為 .active 也就是點擊後才顯示) */
+    .HeaderNav .DropdownSub.active .SubDropdownContent {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translate(0, -50%) !important;
+    }
+    
+    /* 滑鼠懸停時高亮左側項目，並維持 active 項目高亮 */
+    .HeaderNav .DropdownSub.active > .DropdownItem.HasSub,
+    .HeaderNav .DropdownSub:hover > .DropdownItem.HasSub,
+    .HeaderNav .DropdownSub > .DropdownItem.HasSub:hover,
+    .HeaderNav .MegaMenuLeft > a.DropdownItem:hover {
+        color: #ffffff;
+    }
+
+    /* 右側彈出內容 (設定為絕對定位，相對於 MegaMenuLeft 或 DropdownContent) */
+    .HeaderNav .DropdownSub .SubDropdownContent {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-left: 60px; /* 偏離右邊線的距離 */
+        display: flex !important;
+        flex-direction: row; /* 水平排列，上方圖片下方文字 */
+        gap: 30px;
+        align-items: center; /* 讓內容垂直置中對齊 */
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-10px, -50%);
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0;
+        width: max-content; /* 根據內容寬度自動撐開，不然會被擠斷 */
+        max-width: calc(100vw - 380px); /* 限制最大寬度以配合螢幕空間 */
+        overflow: hidden; /* 空間不足時隱藏超出空間的按鈕 */
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    /* 圖文結構商品樣式 */
+    .HeaderNav .MegaMenuProduct {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* 確保內容靠上對齊 */
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease, color 0.3s ease;
+        width: 140px; /* 控制每個選項的寬度 */
+        cursor: pointer;
+    }
+    
+    .HeaderNav .MegaMenuProduct.NonClickable {
+        cursor: default; /* 沒有功能性反應 */
+    }
+
+    .HeaderNav .MegaMenuProduct:hover {
+        color: #ffffff;
+        transform: translateY(-5px); /* 上浮動畫 */
+        filter: brightness(1.1);
+    }
+
+    /* 產品圖片的預留區域 */
+    .HeaderNav .ProductImagePlaceholder {
+        width: 100%;
+        aspect-ratio: 1 / 1; /* 1:1 的正方形比例 */
+        background: transparent; /* 去除黑黑的背景色 */
+        border: none; /* 去除框線 */
+        margin-bottom: -10px; /* 抵消 HTML 中 img padding 帶來的底部留白，讓文字更靠近 */
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .HeaderNav .MegaMenuProduct:hover .ProductImagePlaceholder {
+        /* hover時不改變大小，改給一個溫和的光暈避免排版破裂 */
+        filter: drop-shadow(0px 5px 15px rgba(0, 150, 255, 0.3));
+    }
+
+    /* 產品文字 */
+    .HeaderNav .ProductTitle {
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: center;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+        line-height: 1.4;
+        width: 100%;
+    }
 }
 
 .HasDropdown {
@@ -229,9 +539,10 @@ img.Header {
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
 }
 
-/* 電腦版懸停顯示 */
+/* 電腦版懸停顯示 (僅在非抽屜模式下生效，且包含 HeaderRight 內的語言按鈕) */
 @media (min-width: 701px) {
-    .NavDropdown:hover>.DropdownContent {
+    .HeaderNav:not(.active) .NavDropdown:hover>.DropdownContent,
+    .HeaderRight .NavDropdown:hover>.DropdownContent {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
@@ -245,6 +556,13 @@ img.Header {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
+}
+
+/* 適配選單展開 */
+@media (max-width: 700px) {
+    .HeaderNav .NavDropdown {
+        width: 100%;
+    }
 }
 
 .DropdownItem {
@@ -276,7 +594,7 @@ img.Header {
 
 .DropdownItem.HasSub {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     cursor: pointer;
@@ -319,13 +637,34 @@ img.Header {
     pointer-events: none;
     transform: translateX(-30px);
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
+    display: none; /* 手機版預設收合不佔用空間 */
 }
 
-.DropdownSub:hover>.SubDropdownContent {
+/* 電腦版支援hover的相容寫法，以及手機版點選展開時 (.open) 的顯示控制 */
+.DropdownSub.open>.SubDropdownContent {
+    display: block;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateX(0);
+}
+
+/* 針對狹小螢幕與手機版的選單修正 */
+@media (max-width: 900px) {
+    .DropdownSub.open > .SubDropdownContent {
+        position: static; /* 不要飄到右邊 */
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        transform: none;
+        margin-left: 0;
+        padding-top: 0;
+        padding-left: 20px; /* 退縮排 */
+    }
+
+    .DropdownSub.open .SideTriangle {
+        transform: rotate(90deg); /* 展開時箭頭朝下 */
+    }
 }
 
 /* 手機版選單按鈕 (預設隱藏) */
@@ -333,27 +672,102 @@ img.Header {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 21px;
+    width: 20px; /* 改為20px 與語言圖示同寬 */
+    height: 14px; /* 對應縮小高度 */
     background: transparent;
     border: none;
     cursor: pointer;
     z-index: 10001;
-    /* 確保在最上層 */
     padding: 0;
+}
+
+/* 當寬度不足容納完整導航列加上緩衝空間時 (900px)，直接全部收合為右側抽屜 */
+@media (max-width: 900px) {
+    .MenuToggle {
+        display: flex;
+        margin-left: 5px; /* 讓漢堡與地球緊密靠攏 */
+    }
+
+    .HeaderNav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%; /* 稍微加寬 */
+        max-width: 320px;
+        height: 100dvh; /* 使用 dvh 確保包含行動版網址列空間 */
+        background-color: rgba(10, 10, 10, 0.55); /* 較低的透明度讓後方色彩透出 */
+        backdrop-filter: blur(30px) saturate(200%); /* 極高的模糊與飽和度是 Windows Acrylic 質感的靈魂 */
+        -webkit-backdrop-filter: blur(30px) saturate(200%);
+        border-left: 1px solid rgba(255, 255, 255, 0.12); /* 壓克力邊緣會有較明顯的晶瑩高光 */
+        flex-direction: column;
+        justify-content: flex-start; /* 改為頂部對齊，確保長選單可捲動 */
+        padding: 100px 0 60px 0; /* 調整上下內距 */
+        transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+        border-radius: 30px 0 0 30px !important; /* 左上、左下圓角 */
+        z-index: 10001;
+        margin-right: 0;
+        box-sizing: border-box; /* 防止 padding 撐開高度 */
+        overflow-y: auto; /* 允許垂直捲動 */
+        scrollbar-width: none; /* Firefox 隱藏捲動列 */
+        -ms-overflow-style: none; /* IE/Edge 隱藏捲動列 */
+    }
+
+    /* Chrome, Safari, Opera 隱藏捲動列 */
+    .HeaderNav::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* 當有 active 類別時，無論螢幕大小都變為側邊欄 */
+.HeaderNav.active {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 75% !important;
+    max-width: 320px !important;
+    height: 100dvh !important;
+    background-color: rgba(10, 10, 10, 0.55) !important; /* 較低的透明度讓後方色彩透出 */
+    backdrop-filter: blur(30px) saturate(200%) !important; /* 極高的模糊與飽和度是 Windows Acrylic 質感的靈魂 */
+    -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.12) !important; /* 壓克力邊緣會有較明顯的晶瑩高光 */
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* 改為頂部對齊 */
+    padding: 100px 0 60px 0 !important;
+    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8) !important;
+    border-radius: 30px 0 0 30px !important; /* 左上、左下圓角 */
+    z-index: 10001 !important;
+    display: flex !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important; /* 允許垂直捲動 */
+    scrollbar-width: none !important; /* Firefox 隱藏捲動列 */
+    -ms-overflow-style: none !important; /* IE/Edge 隱藏捲動列 */
+    animation: slideInFromRight 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Chrome, Safari, Opera 隱藏捲動列 (針對 active 狀態) */
+.HeaderNav.active::-webkit-scrollbar {
+    display: none !important;
+}
+
+@keyframes slideInFromRight {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
 }
 
 .MenuToggle .bar {
     width: 100%;
-    height: 3px;
+    height: 2px; /* 將線條弄細 */
     background-color: white;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 /* 漢堡選單動畫效果 */
 .MenuToggle.active .bar:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
+    transform: translateY(6px) rotate(45deg); /* 適應新高度的位移 */
 }
 
 .MenuToggle.active .bar:nth-child(2) {
@@ -361,7 +775,7 @@ img.Header {
 }
 
 .MenuToggle.active .bar:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-45deg); /* 適應新高度的位移 */
 }
 
 /*====================回到頂部按鈕====================*/
@@ -519,43 +933,47 @@ img.FrontCover {
     margin-top: 2rem;
 }
 
-/* 按鈕1樣式 */
-.FrontCoverButton1 {
-    padding: 12px 50px;
-    font-size: 1.1rem;
+/* 統一按鈕基礎樣式 */
+.FrontCoverButton1, .FrontCoverButton2, .FrontCoverButton3 {
+    width: 150px; /* 固定寬度 150px */
+    max-width: 150px;
+    height: 40px; /* 固定高度 40px */
+    padding: 0; /* 歸零以確保完全由 flex 置中 */
+    margin: 0;
+    font-size: 1rem;
     font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal; /* 允許英文自動換行 */
+    line-height: 1.1;
+    word-break: break-word; /* 避免切到 */
+    box-sizing: border-box;
+}
+
+/* 按鈕1樣式 (空心) */
+.FrontCoverButton1 {
     color: white;
     background-color: transparent;
     border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* 按鈕2樣式 */
+/* 按鈕2樣式 (實心白) */
 .FrontCoverButton2 {
-    padding: 12px 50px;
-    font-size: 1.1rem;
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     color: black;
     background-color: white;
     border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* 按鈕3樣式 */
+/* 按鈕3樣式 (空心 - 下載中心) */
 .FrontCoverButton3 {
-    padding: 12px 50px;
-    font-size: 1.1rem;
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     color: white;
     background-color: transparent;
     border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* 按鈕1懸停效果 */
@@ -1563,41 +1981,18 @@ img.FrontCover {
         gap: 30px;
     }
 
-    /* 響應式：導覽列 */
+    /* 導覽列佈局微調 */
     header {
-        padding: 10px 20px;
         justify-content: space-between;
     }
+}
 
-    /* 顯示漢堡選單按鈕 */
-    .MenuToggle {
-        display: flex;
-    }
+/* 桌機與手機共同的抽屜式選單樣式 (1200px 以下生效) */
+@media (max-width: 1200px) {
+    /* 讓漢堡選單內的按鈕充滿寬度並對齊 */
 
-    /* 手機版導覽選單 */
-    .HeaderNav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        /* 預設隱藏在右側 */
-        width: 70%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 60px;
-        transition: right 0.3s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .HeaderNav.active {
-        right: 0;
-        /* 滑入顯示 */
-    }
-
-    .NavButton {
+    /* 抽屜內按鈕字體與內距調整 */
+    .HeaderNav.active .NavButton {
         font-size: 1.2rem;
         padding: 15px 30px;
         width: 100%;
@@ -1605,40 +2000,39 @@ img.FrontCover {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 0;
         box-sizing: border-box;
-        /* 防止 padding 導致超出寬度 */
     }
 
-    .NavButton:hover {
+    .HeaderNav.active .NavButton:hover {
         background-color: rgba(255, 255, 255, 0.1);
         transform: none;
     }
 
-    .NavButton.HasDropdown {
+    .HeaderNav.active .NavButton.HasDropdown {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    /* 手機版下拉選單調整 */
-    .NavDropdown {
+    /* 抽屜版下拉選單調整 */
+    .HeaderNav.active .NavDropdown {
         width: 100%;
     }
 
-    .DropdownTriangle {
+    .HeaderNav.active .DropdownTriangle {
         display: block;
         position: absolute;
         right: 30px;
-        /* 固定在右側，不影響文字置中 */
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    .DropdownContent {
+    .HeaderNav.active .DropdownContent {
         position: static;
         transform: none !important;
         opacity: 0;
         visibility: hidden;
         display: block;
-        /* 使用 block 但控制高度來達到動畫效果 */
         max-height: 0;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.05);
@@ -1649,33 +2043,40 @@ img.FrontCover {
         -webkit-backdrop-filter: none;
         width: 100%;
         pointer-events: auto;
-        /* 確保手機版可以點擊 */
         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     }
 
-    .NavDropdown.open>.DropdownContent {
+    .HeaderNav.active .NavDropdown.open>.DropdownContent {
         max-height: 500px;
         opacity: 1;
         visibility: visible;
         padding: 5px 0;
     }
 
-    .DropdownItem {
-        font-size: 1.1rem;
+    .HeaderNav.active .DropdownItem {
+        font-size: 1.2rem;
         padding: 15px 30px;
         color: rgba(255, 255, 255, 0.8);
         background-color: transparent;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
-        /* 為絕對定位的圖示提供參考 */
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 0;
     }
 
-    /* 手機版子選單調整 */
-    .SubDropdownContent {
+    .HeaderNav.active .DropdownItem:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .HeaderNav.active .SubDropdownContent {
         position: static;
         transform: none !important;
         opacity: 0;
@@ -1692,47 +2093,45 @@ img.FrontCover {
         margin-left: 0;
         width: 100%;
         pointer-events: auto;
-        /* 確保手機版可以點擊 */
         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     }
 
-    .DropdownSub.open>.SubDropdownContent {
+    .HeaderNav.active .DropdownSub.open>.SubDropdownContent {
         max-height: 300px;
         opacity: 1;
         visibility: visible;
         padding: 5px 0;
     }
 
-    .DropdownSub .DropdownItem {
+    .HeaderNav.active .DropdownSub .DropdownItem {
         padding-left: 30px;
         padding-right: 30px;
-        /* 移除強制左縮排，改為兩側對稱補白以維持置中感 */
         font-size: 1rem;
         color: rgba(255, 255, 255, 0.6);
     }
 
-    .SideTriangle {
+    .HeaderNav.active .SideTriangle {
         display: block;
         position: absolute;
         right: 30px;
-        /* 固定在右側 */
         transform: rotate(90deg);
         transition: transform 0.3s ease;
     }
 
-    .DropdownSub.open .SideTriangle {
+    .HeaderNav.active .DropdownSub.open .SideTriangle {
         transform: rotate(270deg);
-        /* 展開時向上 */
     }
 
-    .DropdownItem.HasSub {
+    .HeaderNav.active .DropdownItem.HasSub {
         background-color: rgba(255, 255, 255, 0.08);
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+}
 
+@media (max-width: 700px) {
     /* 響應式：回到頂部按鈕 */
     .ScrollToTopButton {
         width: 45px;

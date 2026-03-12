@@ -7,6 +7,8 @@
     <title>下載中心 - FLock 專業智慧的門禁系統</title>
     <link rel="icon" href="images/LockServer_Icon.png" type="image/png">
     <link rel="stylesheet" href="FLock_Style.css">
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </head>
 
 <body>
@@ -18,31 +20,126 @@
                 <h1 class="Header">FLock</h1>
             </a>
         </div>
-        <button class="MenuToggle" aria-label="開啟選單">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+
         <nav class="HeaderNav">
-            <a href="index.html" class="NavButton">產品故事</a>
-            <div class="NavDropdown">
-                <a href="device.html" class="NavButton HasDropdown">門禁機台 <span class="DropdownTriangle"></span></a>
+            <a href="index.html" class="NavButton nav-item-v4" data-i18n="nav_story">產品故事</a>
+            <div class="NavDropdown nav-item-v3">
+                <a href="device.html" class="NavButton HasDropdown" data-i18n="nav_device">門禁機台 <span
+                        class="DropdownTriangle"></span></a>
                 <div class="DropdownContent">
-                    <a href="device.html" class="DropdownItem">所有門禁機台</a>
-                    <div class="DropdownSub">
-                        <a href="javascript:void(0)" class="DropdownItem HasSub">X1 系列 <span
-                                class="SideTriangle"></span></a>
-                        <div class="SubDropdownContent">
-                            <a href="x1-series.html" class="DropdownItem">X1 系列</a>
-                            <a href="x1p.html" class="DropdownItem">X1P</a>
-                            <a href="x1pb.html" class="DropdownItem">X1PB</a>
+                    <div class="MegaMenuLeft">
+                        <!-- 手機版：普通按鈕 (不要子選單) -->
+                        <a href="device.html" class="DropdownItem MobileOnly" data-i18n="nav_all_devices">所有門禁機台</a>
+
+                        <!-- 電腦版：所有門禁機台 資料夾 (預設為 active) -->
+                        <div class="DropdownSub active DesktopOnly">
+                            <a href="javascript:void(0)" class="DropdownItem HasSub"><span data-i18n="nav_all_devices_folder">所有門禁機台</span> <span class="SideTriangle"></span></a>
+                            <div class="SubDropdownContent">
+                                <!-- 電腦板：圖文展示卡片 -->
+                                <a href="device.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="所有門禁機台" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle" data-i18n="nav_all_devices">所有門禁機台</span>
+                                </a>
+                                <a href="x1p.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="X1P" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">X1P</span>
+                                </a>
+                                <a href="x1pb.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="X1PB" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">X1PB</span>
+                                </a>
+                                <a href="javascript:void(0)" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="L1" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">L1</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- X1 系列 資料夾 -->
+                        <div class="DropdownSub">
+                            <a href="javascript:void(0)" class="DropdownItem HasSub"><span data-i18n="nav_x1_series">X1 系列</span> <span class="SideTriangle"></span></a>
+                            <div class="SubDropdownContent">
+                                <!-- 手機板：傳統簡潔清單 -->
+                                <a href="x1-series.html" class="DropdownItem MobileOnly">X1 系列介紹</a>
+                                <a href="x1p.html" class="DropdownItem MobileOnly">X1P</a>
+                                <a href="x1pb.html" class="DropdownItem MobileOnly">X1PB</a>
+
+                                <!-- 電腦板：圖文展示卡片 -->
+                                <a href="x1-series.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="X1 系列介紹" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">X1 系列介紹</span>
+                                </a>
+                                <a href="x1p.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="X1P" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">X1P</span>
+                                </a>
+                                <a href="x1pb.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="X1PB" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">X1PB</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- L 系列 資料夾 -->
+                        <div class="DropdownSub">
+                            <a href="javascript:void(0)" class="DropdownItem HasSub"><span data-i18n="nav_l_series">L 系列</span> <span class="SideTriangle"></span></a>
+                            <div class="SubDropdownContent">
+                                <!-- 手機板：傳統簡潔清單 -->
+                                <a href="l-series.html" class="DropdownItem MobileOnly">L1 系列介紹</a>
+                                <a href="javascript:void(0)" class="DropdownItem MobileOnly">L1</a>
+
+                                <!-- 電腦板：圖文展示卡片 -->
+                                <a href="l-series.html" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="L1 系列介紹" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">L1 系列介紹</span>
+                                </a>
+                                <a href="javascript:void(0)" class="MegaMenuProduct DesktopOnly">
+                                    <div class="ProductImagePlaceholder"><img src="images/LockServer_Icon.png" alt="L1" style="width:100%; height:100%; object-fit:contain; padding:20px; box-sizing: border-box;"></div>
+                                    <span class="ProductTitle">L1</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="software.html" class="NavButton">管理軟體</a>
-            <a href="download.html" class="NavButton active">下載中心</a>
+            <a href="software.html" class="NavButton nav-item-v2" data-i18n="nav_software">管理軟體</a>
+            <a href="download.html" class="NavButton active nav-item-v1" data-i18n="nav_download">下載中心</a>
+
+            <!-- 手機版語言項目 (僅限手機顯示) -->
+            <div class="NavDropdown MobileOnly">
+                <a href="javascript:void(0)" class="NavButton HasDropdown" data-i18n="nav_lang">語言 <span class="DropdownTriangle"></span></a>
+                <div class="DropdownContent">
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('zh')">繁體中文</a>
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('cn')">简体中文</a>
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('en')">English</a>
+                </div>
+            </div>
         </nav>
+
+        <div class="HeaderRight">
+            <!-- 桌機版語言控制 (常駐螢幕最右側) -->
+            <div class="NavDropdown DesktopOnly">
+                <a href="javascript:void(0)" class="NavButton HasDropdown IconOnly" title="Language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="GlobeIcon">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span class="DropdownTriangle"></span>
+                </a>
+                <div class="DropdownContent">
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('zh')">繁體中文</a>
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('cn')">简体中文</a>
+                    <a href="javascript:void(0)" class="DropdownItem" onclick="setLanguage('en')">English</a>
+                </div>
+            </div>
+
+            <button class="MenuToggle" aria-label="開啟選單">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
     </header>
 
     <!--回到頂部按鈕-->
@@ -55,8 +152,8 @@
     <!-- 頁面主體 -->
     <main class="PagePlaceholder">
         <div class="PlaceholderContent">
-            <h2>下載中心</h2>
-            <p>內容正在準備中，我們將提供韌體、軟體及各類說明書的下載連結...</p>
+            <h2 data-i18n="nav_download">下載中心</h2>
+            <p data-i18n="download_placeholder_desc">內容正在準備中，我們將提供韌體、軟體及各類說明書的下載連結...</p>
         </div>
     </main>
 
@@ -68,20 +165,21 @@
                 <h3>FNet FLock</h3>
             </div>
             <div class="FooterInfo">
-                <p>專業智慧的門禁系統解決方案</p>
-                <p>© 2024 FNet FLock. All rights reserved.</p>
+                <p data-i18n="footer_slogan">專業智慧的門禁系統解決方案</p>
+                <p data-i18n="footer_rights">© 2024 FNet FLock. All rights reserved.</p>
             </div>
             <div class="FooterContact">
-                <p>聯絡我們</p>
+                <p data-i18n="footer_contact">聯絡我們</p>
                 <p>Email: contact@fnetlock.com</p>
                 <p>電話: 0800-XXX-XXX</p>
             </div>
         </div>
     </footer>
 
-    <script>
         // 回到頂部按鈕功能
         const scrollToTopButton = document.getElementById('scrollToTop');
+
+        // 偵測捲動位置
         window.addEventListener('scroll', function () {
             if (window.pageYOffset > 300) {
                 scrollToTopButton.classList.add('show');
@@ -89,11 +187,17 @@
                 scrollToTopButton.classList.remove('show');
             }
         });
+
+        // 點擊回到頂部
         scrollToTopButton.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
-        // 手機版選單邏輯
+
+        // 手機版選單切換
         const menuToggle = document.querySelector('.MenuToggle');
         const headerNav = document.querySelector('.HeaderNav');
 
@@ -113,17 +217,27 @@
             document.querySelectorAll('.DropdownSub').forEach(s => s.classList.remove('open'));
         });
 
+        // 阻止選單內部點擊冒泡
         headerNav.addEventListener('click', (e) => {
             e.stopPropagation();
         });
 
-        const isMobile = () => window.innerWidth <= 700;
+        // 手機版下拉選單邏輯
+        const isMobile = () => window.innerWidth <= 900;
 
         document.querySelectorAll('.NavDropdown > .NavButton').forEach(btn => {
             btn.addEventListener('click', (e) => {
+                const parent = btn.parentElement;
+                
                 if (isMobile()) {
-                    e.preventDefault();
-                    btn.parentElement.classList.toggle('open');
+                    e.preventDefault(); // 手機版不跳轉，只展開
+                    e.stopPropagation(); // 阻止冒泡，防止觸發 document 點擊關閉
+                    parent.classList.toggle('open');
+                } else {
+                    // 電腦版: 允許原始跳轉，並關閉可能已開啟的其他選單
+                    document.querySelectorAll('.NavDropdown').forEach(d => {
+                        if (d !== parent) d.classList.remove('open');
+                    });
                 }
             });
         });
@@ -132,8 +246,43 @@
             item.addEventListener('click', (e) => {
                 if (isMobile()) {
                     e.preventDefault();
-                    item.parentElement.classList.toggle('open');
+                    const parent = item.parentElement;
+                    parent.classList.toggle('open');
+                } else {
+                    // 電腦版點擊後才顯示右側內容，防止預設的行為跳轉
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = item.parentElement;
+                    
+                    // 關閉其他的子選單
+                    document.querySelectorAll('.DropdownSub').forEach(sub => {
+                        if (sub !== parent) sub.classList.remove('active');
+                    });
+                    
+                    parent.classList.add('active'); // 確保點擊後保持 active，而不是取消
                 }
+            });
+        });
+
+        // 打開門禁機台時，重置為預設的資料夾狀態 (每次打開 mega menu 時)
+        document.querySelector('.NavDropdown.nav-item-v3').addEventListener('mouseenter', () => {
+            if (!isMobile()) {
+                const subs = document.querySelectorAll('.HeaderNav .DropdownSub');
+                subs.forEach((sub, index) => {
+                    if (index === 0) {
+                        sub.classList.add('active'); // 第一個(所有門禁機台)為預設
+                    } else {
+                        sub.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // 點擊連結後自動關閉選單 (排除具有下拉選單的按鈕)
+        document.querySelectorAll('.NavButton:not(.HasDropdown)').forEach(button => {
+            button.addEventListener('click', () => {
+                headerNav.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
             });
         });
     </script>
