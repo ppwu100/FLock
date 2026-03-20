@@ -296,28 +296,30 @@ img.Header {
         border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* 底部邊界 */
         border-radius: 0 !important; /* 全寬不需圓角 */
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        display: flex !important;
+        display: flex !important; /* 確保 display 設定為 flex 以便動畫能正常運行 */
         flex-direction: row;
         justify-content: flex-start; /* 靠左對齊 */
         align-items: flex-start;
         padding: 50px 60px; /* 左側移更左邊，舒適固定距離 */
         gap: 80px;
-        transform: translateY(-20px);
-        opacity: 0;
+        transform: translateY(calc(-100% - 55px)); /* 藏在導航列上方內部，將底部完全移出畫面 */
+        opacity: 1; /* 移除透明度漸變，讓它以完全不透明的實體滑出 */
         visibility: hidden;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0s 0.4s;
         pointer-events: none;
-        z-index: 9998;
+        z-index: -2; /* 設為負數以確保在 header (z-index 9999) 中墊底，從導航列背後滑出 */
         box-sizing: border-box;
         overflow: hidden; /* 當內容超過右側邊界時，隱藏多出來的地方 */
     }
 
+    /* 顯示狀態：CSS 懸停觸發 (電腦版) */
     .HeaderNav .NavDropdown:hover > .DropdownContent,
     .HeaderNav .NavDropdown.open > .DropdownContent {
-        transform: none !important; /* 重設任何 transform 位移，避免跑位 */
+        transform: translateY(0) !important; 
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0s 0s;
     }
 
     /* Mega Menu 內的內容排列 */
@@ -402,6 +404,11 @@ img.Header {
         visibility: visible !important;
         pointer-events: auto !important;
         transform: translate(0, -50%) !important;
+    }
+    
+    /* 修正「幽靈觸發」問題：避免跳轉到新頁面時，因為子選單預設為 active 而強制具有滑鼠捕獲能力，導致一移動滑鼠就觸發主選單展開與焦點 */
+    .HeaderNav .NavDropdown:not(:hover):not(.open) .DropdownSub.active .SubDropdownContent {
+        pointer-events: none !important;
     }
     
     /* 滑鼠懸停時高亮左側項目，並維持 active 項目高亮 */
@@ -523,12 +530,13 @@ img.Header {
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(-30px);
-    background: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    min-width: 160px;
+    background: rgba(18, 18, 18, 0.45); /* 降低透明度讓背後內容透出 */
+    backdrop-filter: blur(30px) saturate(200%); /* 提高模糊和飽和度打造壓克力質感 */
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    min-width: max-content; /* 寬度配合文字大小 */
+    white-space: nowrap; /* 避免文字斷行 */
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12); /* 增強邊界高光效果 */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     z-index: 10000;
     padding: 8px;
@@ -539,14 +547,27 @@ img.Header {
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
 }
 
+/* 確保最右側的語言選單不會超出螢幕邊界 */
+.HeaderRight .NavDropdown > .DropdownContent {
+    left: auto;
+    right: 0;
+    transform: translateY(-30px); /* 取消置中的 X 軸位移 */
+}
+
 /* 電腦版懸停顯示 (僅在非抽屜模式下生效，且包含 HeaderRight 內的語言按鈕) */
 @media (min-width: 701px) {
-    .HeaderNav:not(.active) .NavDropdown:hover>.DropdownContent,
-    .HeaderRight .NavDropdown:hover>.DropdownContent {
+    .HeaderNav:not(.active) .NavDropdown:hover>.DropdownContent {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
         transform: translateX(-50%) translateY(0);
+    }
+    
+    .HeaderRight .NavDropdown:hover>.DropdownContent {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0); /* 專用修正：取消 X 軸位移 */
     }
 }
 
@@ -651,6 +672,27 @@ img.Header {
 
 /* 針對狹小螢幕與手機版的選單修正 */
 @media (max-width: 900px) {
+    /* 修正手機版主選單內容的浮動問題，改由上方往下推展 */
+    .HeaderNav .NavDropdown > .DropdownContent {
+        position: static;
+        transform: none !important;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        width: 100%;
+        min-width: 0;
+        padding: 5px 0;
+        margin: 0;
+        display: none; /* 預設收合不佔用空間 */
+        opacity: 1 !important;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .HeaderNav .NavDropdown.open > .DropdownContent {
+        display: block !important;
+    }
+
     .DropdownSub.open > .SubDropdownContent {
         position: static; /* 不要飄到右邊 */
         background: transparent;

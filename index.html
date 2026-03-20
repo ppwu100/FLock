@@ -431,11 +431,31 @@
                     e.stopPropagation(); // 阻止冒泡，防止觸發 document 點擊關閉
                     parent.classList.toggle('open');
                 } else {
-                    // 電腦版: 允許原始跳轉，並關閉可能已開啟的其他選單
-                    document.querySelectorAll('.NavDropdown').forEach(d => {
-                        if (d !== parent) d.classList.remove('open');
-                    });
+                    // 電腦版: 如果有下拉選單則切換狀態且不跳轉
+                    if (btn.classList.contains('HasDropdown')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const isOpen = parent.classList.contains('open');
+                        
+                        // 關閉其他的選單
+                        document.querySelectorAll('.NavDropdown').forEach(d => {
+                            d.classList.remove('open');
+                        });
+                        
+                        // 切換目前選單
+                        if (!isOpen) {
+                            parent.classList.add('open');
+                        }
+                    }
                 }
+            });
+        });
+
+        // 點擊 Mega Menu 內的任何連結後自動關閉選單 (排除具有展開功能的資料夾按鈕)
+        document.querySelectorAll('.DropdownContent a:not(.HasSub)').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.NavDropdown').forEach(d => d.classList.remove('open'));
             });
         });
 
